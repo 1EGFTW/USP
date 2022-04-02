@@ -10,6 +10,12 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.enable_lazy_load_no_trans">true</property>
-        <mapping class="bg.tu_varna.sit.vino.project_vino_group12.data.entities.Admin"/>
+        <mapping class="bg.tuvarna.sit.usp_cars.data.entities.Car"/>
+        <mapping class="bg.tuvarna.sit.usp_cars.data.entities.CarService"/>
+        <mapping class="bg.tuvarna.sit.usp_cars.data.entities.Mechanic"/>
+        <mapping class="bg.tuvarna.sit.usp_cars.data.entities.Owner"/>
+        <mapping class="bg.tuvarna.sit.usp_cars.data.entities.Payment"/>
+        <mapping class="bg.tuvarna.sit.usp_cars.data.entities.Service"/>
+        <mapping class="bg.tuvarna.sit.usp_cars.data.entities.User"/>
     </session-factory>
 </hibernate-configuration>
