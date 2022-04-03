@@ -72,7 +72,7 @@ public class UserService {
     public User findUser(UserModel userModel){
         User temp=new User(userModel.getUser_username(), userModel.getUser_password());
         for(User u: repository.getAll()){
-            if(u.equals(temp)){
+            if(u.getUser_username().equals(temp.getUser_username())){
                 return temp;
             }
         }
@@ -91,6 +91,8 @@ public class UserService {
         }
         else {
             try{
+                String pass=new String(hashPassword(user.getUser_password()));
+                user.setUser_password(pass);
                 repository.save(user);
                 log.info("User "+user.getUser_username()+" created!");
             }

@@ -5,7 +5,8 @@ import org.hibernate.annotations.Cascade;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
-
+@Entity
+@Table(name = "car_service")
 public class CarService implements Serializable {
     private static final long serialVersionUID=1L;
     @Id

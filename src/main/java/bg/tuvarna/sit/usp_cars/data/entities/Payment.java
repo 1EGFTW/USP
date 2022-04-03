@@ -24,7 +24,7 @@ public class Payment implements Serializable {
 
     @OneToMany(mappedBy = "payment")
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    private Set<Payment> payments=new HashSet<>();
+    private Set<Car> payments=new HashSet<>();
 
     public Payment() {
     }
@@ -49,11 +49,11 @@ public class Payment implements Serializable {
         this.payment_type = payment_type;
     }
 
-    public Set<Payment> getPayments() {
+    public Set<Car> getPayments() {
         return payments;
     }
 
-    public void setPayments(Set<Payment> payments) {
+    public void setPayments(Set<Car> paymenAlexanderts) {
         this.payments = payments;
     }
 
