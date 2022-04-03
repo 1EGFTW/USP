@@ -23,7 +23,7 @@ public class Service implements Serializable {
     private String service_type;
 
     @OneToMany(mappedBy = "service")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private Set<CarService> carServices;
 
     public Service() {

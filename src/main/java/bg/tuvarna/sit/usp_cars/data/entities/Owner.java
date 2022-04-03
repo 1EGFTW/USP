@@ -27,7 +27,7 @@ public class Owner implements Serializable {
     private int number_of_cars_bought;
 
     @OneToMany(mappedBy = "owner")
-    @Cascade(org.hibernate.annotations.CascadeType.DETACH)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private Set<Car> cars=new HashSet<>();
 
     public Owner() {

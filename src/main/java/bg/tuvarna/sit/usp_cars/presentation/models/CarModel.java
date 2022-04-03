@@ -1,75 +1,32 @@
-package bg.tuvarna.sit.usp_cars.data.entities;
+package bg.tuvarna.sit.usp_cars.presentation.models;
 
-import org.hibernate.annotations.Cascade;
+import bg.tuvarna.sit.usp_cars.data.entities.Owner;
+import bg.tuvarna.sit.usp_cars.data.entities.Payment;
 
-import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
-import java.util.Set;
 
-@Entity
-@Table(name = "car")
-public class Car implements Serializable {
-    private static final long serialVersionUID=1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_car",nullable = false)
-    private int id_car;
-
-    @Column(name = "manufacturer")
+public class CarModel {
     private String manufacturer;
-
-    @Column(name = "model")
     private String model;
-
-    @Column(name = "engine")
     private String engine;
-
-    @Column(name = "transmission")
     private String transmission;
-
-    @Column(name = "drive_type")
     private String drive_type;
-
-    @Column(name = "vin")
     private String vin;
-
-    @Column(name = "price")
     private Double price;
-
-    @Column(name = "date_of_first_reg")
     private Date date_of_first_reg;
-
-    @Column(name = "mileage")
     private int mileage;
-
-    @Column(name = "type")
-    private String type; //leka kola, jip,tir i tn
-
-    @Column(name = "discount")
+    private String type;
     private Double discount;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinColumn(name = "id_owner")
     private Owner owner;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinColumn(name = "id_payment")
     private Payment payment;
 
-    @OneToMany(mappedBy = "car")
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    private Set<CarService> carServices;
-
-    public Car() {
+    public CarModel() {
     }
 
-    public Car(String manufacturer, String model, String engine, String transmission, String drive_type,
-               String vin, Double price, Date date_of_first_reg, int mileage, String type,
-               Double discount, Owner owner, Payment payment) {
+    public CarModel(String manufacturer, String model, String engine, String transmission, String drive_type,
+                    String vin, Double price, Date date_of_first_reg, int mileage, String type,
+                    Double discount, Owner owner, Payment payment) {
         this.manufacturer = manufacturer;
         this.model = model;
         this.engine = engine;
@@ -83,14 +40,6 @@ public class Car implements Serializable {
         this.discount = discount;
         this.owner = owner;
         this.payment = payment;
-    }
-
-    public int getId_car() {
-        return id_car;
-    }
-
-    public void setId_car(int id_car) {
-        this.id_car = id_car;
     }
 
     public String getManufacturer() {
@@ -197,31 +146,22 @@ public class Car implements Serializable {
         this.payment = payment;
     }
 
-    public Set<CarService> getCarServices() {
-        return carServices;
-    }
-
-    public void setCarServices(Set<CarService> carServices) {
-        this.carServices = carServices;
-    }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Car car = (Car) o;
-        return Objects.equals(manufacturer, car.manufacturer) && Objects.equals(model, car.model) && Objects.equals(vin, car.vin) && Objects.equals(price, car.price) && Objects.equals(owner, car.owner);
+        CarModel carModel = (CarModel) o;
+        return mileage == carModel.mileage && Objects.equals(manufacturer, carModel.manufacturer) && Objects.equals(model, carModel.model) && Objects.equals(vin, carModel.vin) && Objects.equals(date_of_first_reg, carModel.date_of_first_reg) && Objects.equals(owner, carModel.owner);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(manufacturer, model, vin, price, owner);
+        return Objects.hash(manufacturer, model, vin, date_of_first_reg, mileage, owner);
     }
 
     @Override
     public String toString() {
-        return "Car{" +
+        return "CarModel{" +
                 "manufacturer='" + manufacturer + '\'' +
                 ", model='" + model + '\'' +
                 ", engine='" + engine + '\'' +
