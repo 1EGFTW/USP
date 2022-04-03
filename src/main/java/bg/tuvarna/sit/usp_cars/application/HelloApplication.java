@@ -22,7 +22,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
 
         PropertyConfigurator.configure(HelloApplication.class.getResource(Constants.Configurations.LOG4J_PROPERTIES));
-        URL path = getClass().getResource(Constants.View.HELLO_VIEW);
+        URL path = getClass().getResource(Constants.View.REGISTRATION_VIEW);
 
         if (path != null){
             FXMLLoader fxmlLoader=new FXMLLoader(path);

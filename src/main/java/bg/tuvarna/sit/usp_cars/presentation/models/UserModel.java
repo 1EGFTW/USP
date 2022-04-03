@@ -10,6 +10,11 @@ public class UserModel {
     public UserModel() {
     }
 
+    public UserModel(String user_username, String user_password) {
+        this.user_username = user_username;
+        this.user_password = user_password;
+    }
+
     public UserModel(String user_username, String user_password, Boolean is_admin) {
         this.user_username = user_username;
         this.user_password = user_password;
