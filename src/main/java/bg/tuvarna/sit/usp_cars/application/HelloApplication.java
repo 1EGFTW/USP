@@ -2,6 +2,7 @@ package bg.tuvarna.sit.usp_cars.application;
 
 import bg.tuvarna.sit.usp_cars.common.Constants;
 import bg.tuvarna.sit.usp_cars.presentation.controllers.HelloController;
+import bg.tuvarna.sit.usp_cars.presentation.controllers.RegistrationController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,7 +27,7 @@ public class HelloApplication extends Application {
 
         if (path != null){
             FXMLLoader fxmlLoader=new FXMLLoader(path);
-            fxmlLoader.setController(new HelloController(stage));
+            fxmlLoader.setController(new RegistrationController(stage));
             Parent root =fxmlLoader.load();
             Scene scene = new Scene(root);
             scene.setFill(Color.TRANSPARENT);

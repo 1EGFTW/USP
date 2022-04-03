@@ -1,5 +1,7 @@
 package bg.tuvarna.sit.usp_cars.presentation.controllers;
 
+import bg.tuvarna.sit.usp_cars.business.services.UserService;
+import bg.tuvarna.sit.usp_cars.data.entities.User;
 import bg.tuvarna.sit.usp_cars.presentation.models.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,24 +23,25 @@ public class RegistrationController {
     public PasswordField user_password;
     @FXML
     public Button login;
+    private final UserService userService= UserService.getInstance();
 
     public RegistrationController(Stage stage){
         s=stage;
     }
 
 
-    /*@FXML
+    @FXML
     public void onAdminLoginButtonClick(ActionEvent actionEvent) {
-        UserModel userToLogIn = new UserModel(user_username.getText(),user_password.getText());
-        if(service.adminLogin(userToLogIn))
+        UserModel userToReg = new UserModel(user_username.getText(),user_password.getText());
+        if(!userService.registerNewUser(userToReg))
         {
-            loadNewPage(REGISTRATION_VIEW);
+            Alert alert=new Alert(Alert.AlertType.INFORMATION,"User already exists!",ButtonType.OK);
+            /*loadNewPage(REGISTRATION_VIEW);*/
         }
         else{
-            user_username.setText("");
-            user_password.setText("");
+            Alert alert=new Alert(Alert.AlertType.INFORMATION,"User registered in successfully!",ButtonType.OK);
         }
-    }*/
+    }
 
     @FXML
     public void goBack(ActionEvent actionEvent){

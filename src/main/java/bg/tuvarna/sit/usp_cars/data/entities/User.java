@@ -27,6 +27,11 @@ public class User implements Serializable {
     public User() {
     }
 
+    public User(String user_username, String user_password) {
+        this.user_username = user_username;
+        this.user_password = user_password;
+    }
+
     public User(String user_username, String user_password, Boolean is_admin) {
         this.user_username = user_username;
         this.user_password = user_password;
@@ -70,7 +75,7 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(user_username, user.user_username) && Objects.equals(user_password, user.user_password);
+        return Objects.equals(user_username, user.user_username);
     }
 
     @Override
