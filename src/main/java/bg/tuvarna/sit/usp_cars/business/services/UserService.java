@@ -35,7 +35,7 @@ public class UserService {
     }
 
     //hashing a pass
-    private static byte[] hashPassword(String password) {
+    private static byte[] hashPassword(String password) { //algoritym za hash na paroli
         byte[] salt = new byte[16];
         byte[] hash=null;
         for (int i = 0; i < 16; i++) {
@@ -55,12 +55,12 @@ public class UserService {
         return hash;
     }
 
-    private boolean verifyPass(UserModel user) {
+    private boolean verifyPass(UserModel user) { //proverka za korektnost pri logvane
         if(findUser(user)==null)
             return false;
         String passToCheck=new String(hashPassword(user.getUser_password()));
 
-        String hashedPassInDB = new String(hashPassword(findUser(user).getUser_password()));//ot bazata parolata
+        String hashedPassInDB = new String(findUser(user).getUser_password());//ot bazata parolata
 
         if(hashedPassInDB.equals(passToCheck)) {
             return true;
@@ -69,21 +69,21 @@ public class UserService {
         }
     }
 
-    public User findUser(UserModel userModel){
+    public User findUser(UserModel userModel){ //tyrsene na potrebitel po ime
         User temp=new User(userModel.getUser_username(), userModel.getUser_password());
         for(User u: repository.getAll()){
             if(u.getUser_username().equals(temp.getUser_username())){
-                return temp;
+                return u;
             }
         }
         return null;
     }
 
-    public boolean logIn(UserModel userModel){
+    public boolean logIn(UserModel userModel){ //metod za logvane ot kontrolera
         return verifyPass(userModel);
     }
 
-    public boolean registerNewUser(UserModel u){
+    public boolean registerNewUser(UserModel u){ //registraciq na potrebitel
         User user=new User(u.getUser_username(),u.getUser_password(),u.getIs_admin());
         if(findUser(u)!=null){
             log.info("User "+u+" already exists!");
