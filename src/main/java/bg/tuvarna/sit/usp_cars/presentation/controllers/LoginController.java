@@ -31,17 +31,17 @@ public class LoginController {
 
 
     @FXML
-    public void onAdminLoginButtonClick(ActionEvent actionEvent) {
+    public void onLoginButtonClick(ActionEvent actionEvent) {
         UserModel userToLog = new UserModel(user_username.getText(),user_password.getText());
         if(userService.logIn(userToLog))
         {
-            Alert alert=new Alert(Alert.AlertType.INFORMATION,"User successfully logged in!",ButtonType.OK);
-            alert.show();
-            /*loadNewPage(REGISTRATION_VIEW);*/
+            infoAlert("User successfully logged in!");
+            /*Main page code here*/
         }
         else{
-            Alert alert=new Alert(Alert.AlertType.INFORMATION,"Error logging in",ButtonType.OK);
-            alert.show();
+            infoAlert("Error logging in");
+            user_username.setText("");
+            user_password.setText("");
         }
     }
 
@@ -67,7 +67,13 @@ public class LoginController {
         }
     }
 
-
+    public void infoAlert(String info){
+        Alert alert=new Alert(Alert.AlertType.INFORMATION,info,ButtonType.OK);
+        /*DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add("Alerts.css");
+        dialogPane.getStyleClass().add("Alert");*/
+        alert.show();
+    }
 
 
 
