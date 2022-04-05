@@ -2,6 +2,7 @@
 
 <?import javafx.scene.layout.*?>
 
+<<<<<<< Updated upstream
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -34,6 +35,30 @@
                                 <Image url="@../../images/share-orange.png" />
                             </image></ImageView>
                     </graphic>--></Button>
+=======
+<AnchorPane prefHeight="765.0" prefWidth="1024.0" stylesheets="css/MainPages.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Pane prefHeight="765.0" prefWidth="512.0" styleClass="leftMenu">
+            <children>
+            </children>
+        </Pane>
+        <Pane layoutX="512.0" maxHeight="765.0" maxWidth="651.0" minHeight="500.0" minWidth="373.0" prefHeight="765.0" prefWidth="512.0" styleClass="inputField">
+            <children>
+                <Label layoutX="144.0" layoutY="175.0" styleClass="labelTitle" text="Please enter your username and password:" textAlignment="CENTER" wrapText="true" />
+                <TextField fx:id="user_username" layoutX="157.0" layoutY="299.0" prefHeight="45.0" prefWidth="200.0" styleClass="inputFields" />
+                <PasswordField fx:id="user_password" layoutX="157.0" layoutY="383.0" prefHeight="45.0" prefWidth="200.0" styleClass="inputFields" />
+                <Button fx:id="login" layoutX="173.0" layoutY="488.0" mnemonicParsing="false" onAction="#onRegistrationButtonClick" prefHeight="55.0" prefWidth="167.0" styleClass="confirmButtons" text="Register" wrapText="true">
+                    <font>
+                        <Font size="10.0" />
+                    </font></Button>
+                <Label layoutX="155.0" layoutY="270.0" text="Username" />
+                <Label layoutX="157.0" layoutY="356.0" text="Password" />
+                <Button layoutX="157.0" layoutY="543.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="232.0" styleClass="emptyButton" text="Already have an account? Click here!" />
+                <Label alignment="CENTER" layoutX="192.0" layoutY="103.0" text="Registration" textAlignment="CENTER">
+                    <font>
+                        <Font size="24.0" />
+                    </font></Label>
+>>>>>>> Stashed changes
             </children>
         </Pane>
     </children>
