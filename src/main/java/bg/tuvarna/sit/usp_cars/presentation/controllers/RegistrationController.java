@@ -42,25 +42,12 @@ public class RegistrationController {
         }
         else{
             infoAlert("User registered in successfully!");
-            try {
-                s.close();
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(LOGIN_VIEW));
-                Stage stage = new Stage();
-                fxmlLoader.setController(new LoginController(stage));
-                Parent root1 = (Parent) fxmlLoader.load();
-                stage.setScene(new Scene(root1));
-                stage.setResizable(false);
-                stage.setWidth(1024);
-                stage.setHeight(768);
-                stage.show();
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
+            loadNewPage(LOGIN_VIEW);
         }
     }
 
     @FXML
-    public void goBack(ActionEvent actionEvent){
+    public void onAlreadyRegisteredButtonClick(ActionEvent actionEvent){
         loadNewPage(LOGIN_VIEW);
     }
 
@@ -69,7 +56,7 @@ public class RegistrationController {
             s.close();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
             Stage stage = new Stage();
-            fxmlLoader.setController(new HelloController(stage));
+            fxmlLoader.setController(new LoginController(stage));
             Parent root1 = (Parent) fxmlLoader.load();
             stage.setScene(new Scene(root1));
             stage.setResizable(false);

@@ -46,8 +46,8 @@ public class LoginController {
     }
 
     @FXML
-    public void goBack(ActionEvent actionEvent){
-        loadNewPage(HELLO_VIEW);
+    public void onNoRegistrationButtonClick(ActionEvent actionEvent){
+        loadNewPage(REGISTRATION_VIEW);
     }
 
     public void loadNewPage(String path){
@@ -55,7 +55,7 @@ public class LoginController {
             s.close();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
             Stage stage = new Stage();
-            fxmlLoader.setController(new HelloController(stage));
+            fxmlLoader.setController(new RegistrationController(stage));
             Parent root1 = (Parent) fxmlLoader.load();
             stage.setScene(new Scene(root1));
             stage.setResizable(false);
