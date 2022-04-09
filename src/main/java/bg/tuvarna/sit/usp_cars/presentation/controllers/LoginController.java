@@ -11,8 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import static bg.tuvarna.sit.usp_cars.common.Constants.View.HELLO_VIEW;
-import static bg.tuvarna.sit.usp_cars.common.Constants.View.REGISTRATION_VIEW;
+import static bg.tuvarna.sit.usp_cars.common.Constants.View.*;
 
 public class LoginController {
 
@@ -36,7 +35,20 @@ public class LoginController {
         if(userService.logIn(userToLog))
         {
             infoAlert("User successfully logged in!");
-            /*Main page code here*/
+            try {
+                s.close();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(MAIN_VIEW));
+                Stage stage = new Stage();
+                fxmlLoader.setController(new MainController(stage));
+                Parent root1 = (Parent) fxmlLoader.load();
+                stage.setScene(new Scene(root1));
+                stage.setResizable(false);
+                stage.setWidth(1024);
+                stage.setHeight(768);
+                stage.show();
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
         }
         else{
             infoAlert("Error logging in");

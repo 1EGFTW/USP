@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="765.0" prefWidth="1024.0" stylesheets="@css/MainPages.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Pane layoutY="-1.0" prefHeight="87.0" prefWidth="1024.0" styleClass="leftMenu">
+         <children>
+            <Button mnemonicParsing="false" onAction="#goBack" prefHeight="87.0" prefWidth="83.0" styleClass="menuButton">
+               <graphic>
+                  <ImageView fitHeight="71.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="102.0" mnemonicParsing="false" onAction="#switchToAdd" prefHeight="86.0" prefWidth="150.0" styleClass="menuButton" text="Add" />
+         </children>
+        </Pane>
+        <Pane fx:id="wrapperPane" layoutY="87.0" maxHeight="765.0" maxWidth="1024.0" minHeight="500.0" minWidth="373.0" prefHeight="680.0" prefWidth="1024.0" styleClass="rightField">
+         <children>
+            <Pane fx:id="logoPane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes" />
+            <Pane fx:id="addPane" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
+               <children>
+                  <Button layoutX="230.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchAddPane" styleClass="inputButton" text="Button" />
+                  <ComboBox fx:id="comboBoxChoices" layoutX="131.0" layoutY="248.0" prefHeight="50.0" prefWidth="250.0" styleClass="comboBox" />
+                  <Label layoutX="242.0" layoutY="120.0" text="Label" />
+               </children></Pane>
+                  <Pane fx:id="addCarServicePane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
+                       <children>
+                           <Button layoutX="219.0" layoutY="503.0" mnemonicParsing="false" onAction="#onAddCarServiceButtonClick" styleClass="inputButton" text="Add a service" />
+                           <Label layoutX="226.0" layoutY="220.0" styleClass="infoLabel" text="Choose a car:" />
+                           <Label layoutX="217.0" layoutY="313.0" styleClass="infoLabel" text="Choose a service:" />
+                           <Label layoutX="209.0" layoutY="404.0" styleClass="infoLabel" text="Choose a mechanic:" />
+                           <ComboBox fx:id="tfCarChoice" layoutX="42.0" layoutY="237.0" prefHeight="50.0" prefWidth="441.0" styleClass="comboBox" />
+                           <ComboBox fx:id="tfServiceChoice" layoutX="42.0" layoutY="330.0" prefHeight="50.0" prefWidth="441.0" styleClass="comboBox" />
+                           <ComboBox fx:id="tfMechanicChoice" layoutX="42.0" layoutY="421.0" prefHeight="50.0" prefWidth="441.0" styleClass="comboBox" />
+                           <Label layoutX="180.0" layoutY="77.0" styleClass="infoTitle" text="Please assign a service to a car:" />
+                       </children>
+                  </Pane>
+                  <Pane fx:id="addPaymentPane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
+                       <children>
+                           <Button layoutX="190.0" layoutY="467.0" mnemonicParsing="false" onAction="#onAddPaymentButtonClick" styleClass="inputButton" text="Add payment method" />
+                           <Label layoutX="182.0" layoutY="303.0" styleClass="infoLabel" text="Enter payment method:" />
+                           <TextField fx:id="tfPaymentMethod" layoutX="182.0" layoutY="340.0" styleClass="inputField" />
+                           <Label layoutX="120.0" layoutY="91.0" styleClass="infoTitle" text="Please enter the payment method you want to add:" />
+                       </children>
+                  </Pane>
+
+                  <ScrollPane fx:id="addCarPane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="scroll-pane">
+                     <content>
+
+               </content>
+                     <content>
+                         <Pane prefHeight="937.0" prefWidth="512.0">
+                             <Label layoutX="173.0" layoutY="73.0" styleClass="infoTitle" text="Please enter the characteristics &#10;of the car you want to add:" textAlignment="CENTER" />
+                             <Button layoutX="227.0" layoutY="887.0" mnemonicParsing="false" onAction="#onAddCarButtonClick" styleClass="inputButton" text="Add car" />
+                             <Label layoutX="182.0" layoutY="155.0" styleClass="infoLabel" text="Enter manufacturer:" />
+                             <Label layoutX="182.0" layoutY="204.0" styleClass="infoLabel" text="Enter model:" />
+                             <TextField fx:id="tfManufacturer" layoutX="182.0" layoutY="172.0" styleClass="inputField" />
+                             <TextField fx:id="tfModel" layoutX="182.0" layoutY="221.0" styleClass="inputField" />
+                             <Label layoutX="182.0" layoutY="254.0" styleClass="infoLabel" text="Enter engine:" />
+                             <TextField fx:id="tfEngine" layoutX="182.0" layoutY="271.0" styleClass="inputField" />
+                             <Label layoutX="182.0" layoutY="305.0" styleClass="infoLabel" text="Enter transmission:" />
+                             <TextField fx:id="tfTransmission" layoutX="182.0" layoutY="328.0" styleClass="inputField" />
+                             <Label layoutX="182.0" layoutY="361.0" styleClass="infoLabel" text="Enter drive type:" />
+                             <TextField fx:id="tfDriveType" layoutX="182.0" layoutY="385.0" styleClass="inputField" />
+                             <Label layoutX="182.0" layoutY="416.0" styleClass="infoLabel" text="Enter vin:" />
+                             <TextField fx:id="tfVin" layoutX="182.0" layoutY="442.0" styleClass="inputField" />
+                             <Label layoutX="183.0" layoutY="475.0" styleClass="infoLabel" text="Enter price:" />
+                             <TextField fx:id="tfPrice" layoutX="182.0" layoutY="502.0" styleClass="inputField" />
+                             <Label layoutX="182.0" layoutY="537.0" styleClass="infoLabel" text="Enter the date of first registration:" />
+                             <DatePicker fx:id="tfDateOfReg" layoutX="183.0" layoutY="559.0" styleClass="dateField" />
+                             <Label layoutX="182.0" layoutY="593.0" styleClass="infoLabel" text="Enter mileage:" />
+                             <TextField fx:id="tfMileage" layoutX="181.0" layoutY="616.0" styleClass="inputField" />
+                             <Label layoutX="183.0" layoutY="648.0" styleClass="infoLabel" text="Enter type of vehicle:" />
+                             <TextField fx:id="tfVehicleType" layoutX="181.0" layoutY="671.0" styleClass="inputField" />
+                             <Label layoutX="184.0" layoutY="705.0" styleClass="infoLabel" text="Enter discount:" />
+                             <TextField fx:id="tfDiscount" layoutX="181.0" layoutY="722.0" styleClass="inputField" />
+                             <Label layoutX="182.0" layoutY="754.0" styleClass="infoLabel" text="Choose owner:" />
+                             <ComboBox fx:id="tfOwnerCombo" layoutX="181.0" layoutY="771.0" prefWidth="150.0" styleClass="comboBox" />
+                             <Label layoutX="180.0" layoutY="805.0" styleClass="infoLabel" text="Choose payment method:" />
+                             <ComboBox fx:id="tfPaymentCombo" layoutX="180.0" layoutY="828.0" prefWidth="150.0" styleClass="comboBox" />
+
+                         </Pane>
+                     </content>
+                  </ScrollPane>
+                  <Pane fx:id="addMechanicPane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
+                       <children>
+                           <Button layoutX="210.0" layoutY="466.0" mnemonicParsing="false" onAction="#onAddMechanicButtonClick" styleClass="inputButton" text="Add mechanic" />
+                           <Label layoutX="182.0" layoutY="303.0" styleClass="infoLabel" text="Enter mechanic's name:" />
+                           <TextField fx:id="tfMechanicName" layoutX="182.0" layoutY="340.0" styleClass="inputField" />
+                           <Label layoutX="120.0" layoutY="91.0" styleClass="infoTitle" text="Please enter the mechanic's name you want to add:" />
+                       </children>
+                  </Pane>
+                  <Pane fx:id="addServicePane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
+                       <children>
+                           <Button layoutX="219.0" layoutY="500.0" mnemonicParsing="false" onAction="#onAddServiceButtonClick" styleClass="inputButton" text="Add service" />
+                           <Label layoutX="182.0" layoutY="231.0" styleClass="infoLabel" text="Enter service name:" />
+                           <Label layoutX="182.0" layoutY="332.0" styleClass="infoLabel" text="Enter service type:" />
+                           <TextField fx:id="tfServiceName" layoutX="182.0" layoutY="267.0" styleClass="inputField" />
+                           <TextField fx:id="tfServiceType" layoutX="182.0" layoutY="359.0" styleClass="inputField" />
+                           <Label layoutX="152.0" layoutY="74.0" styleClass="infoTitle" text="Please enter the name and type &#10;of the service you want to add:" />
+                       </children>
+                  </Pane>
+                  <Pane fx:id="addOwnerPane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
+                     <children>
+                        <Button layoutX="219.0" layoutY="500.0" mnemonicParsing="false" onAction="#onAddOwnerButtonClick" styleClass="inputButton" text="Add owner" />
+                        <Label layoutX="182.0" layoutY="231.0" styleClass="infoLabel" text="Enter owner name:" />
+                        <Label layoutX="182.0" layoutY="332.0" styleClass="infoLabel" text="Enter cars owned:" />
+                        <TextField fx:id="tfOwnerName" layoutX="182.0" layoutY="267.0" styleClass="inputField" />
+                        <TextField fx:id="tfCarsOwned" layoutX="182.0" layoutY="359.0" styleClass="inputField" />
+                        <Label layoutX="152.0" layoutY="74.0" styleClass="infoTitle" text="Please enter the name and owned cars &#10;of the owner you want to add:" />
+                     </children>
+                  </Pane>
+            <Pane fx:id="welcomePane" prefHeight="680.0" prefWidth="1024.0" styleClass="centerPanes">
+               <children>
+                  <Label layoutX="437.0" layoutY="323.0" text="Welcome to VAM AutoShop" />
+               </children></Pane>
+         </children>
+        </Pane>
+    </children>
+</AnchorPane>

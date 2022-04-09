@@ -6,6 +6,15 @@
     -fx-background-color: #F5F5F5;
 }
 
+.centerPanes{
+    -fx-background-color: #EBEBEB;
+ }
+
+ .scroll-pane {
+    -fx-background: #EBEBEB;
+    -fx-border-color: #EBEBEB;
+ }
+
 .confirmButtons{
      -fx-color: #9DA6AA;
      -fx-font-family: sans-serif;
@@ -66,4 +75,19 @@
   .inputFields:focused{
      -fx-faint-focus-color: transparent;
      -fx-focus-color: #9DA6AA;
+ }
+
+ .menuButton{
+     -fx-border-color: transparent;
+     -fx-border-width: 0;
+     -fx-background-radius: 0;
+     -fx-background-color: transparent;
+     -fx-text-fill: #5B5750;
+     -fx-font-size: 24px;
+     -fx-font-weight: bold;
+ }
+
+ .menuButton:hover{
+     -fx-cursor: hand;
+     -fx-background-color: #697178;
  }
