@@ -11,8 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import static bg.tuvarna.sit.usp_cars.common.Constants.View.HELLO_VIEW;
-import static bg.tuvarna.sit.usp_cars.common.Constants.View.REGISTRATION_VIEW;
+import static bg.tuvarna.sit.usp_cars.common.Constants.View.*;
 
 public class LoginController {
 
@@ -31,23 +30,36 @@ public class LoginController {
 
 
     @FXML
-    public void onAdminLoginButtonClick(ActionEvent actionEvent) {
+    public void onLoginButtonClick(ActionEvent actionEvent) {
         UserModel userToLog = new UserModel(user_username.getText(),user_password.getText());
         if(userService.logIn(userToLog))
         {
-            Alert alert=new Alert(Alert.AlertType.INFORMATION,"User successfully logged in!",ButtonType.OK);
-            alert.show();
-            /*loadNewPage(REGISTRATION_VIEW);*/
+            infoAlert("User successfully logged in!");
+            try {
+                s.close();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(MAIN_VIEW));
+                Stage stage = new Stage();
+                fxmlLoader.setController(new MainController(stage));
+                Parent root1 = (Parent) fxmlLoader.load();
+                stage.setScene(new Scene(root1));
+                stage.setResizable(false);
+                stage.setWidth(1024);
+                stage.setHeight(768);
+                stage.show();
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
         }
         else{
-            Alert alert=new Alert(Alert.AlertType.INFORMATION,"Error logging in",ButtonType.OK);
-            alert.show();
+            infoAlert("Error logging in");
+            user_username.setText("");
+            user_password.setText("");
         }
     }
 
     @FXML
-    public void goBack(ActionEvent actionEvent){
-        loadNewPage(HELLO_VIEW);
+    public void onNoRegistrationButtonClick(ActionEvent actionEvent){
+        loadNewPage(REGISTRATION_VIEW);
     }
 
     public void loadNewPage(String path){
@@ -55,7 +67,7 @@ public class LoginController {
             s.close();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
             Stage stage = new Stage();
-            fxmlLoader.setController(new HelloController(stage));
+            fxmlLoader.setController(new RegistrationController(stage));
             Parent root1 = (Parent) fxmlLoader.load();
             stage.setScene(new Scene(root1));
             stage.setResizable(false);
@@ -67,7 +79,13 @@ public class LoginController {
         }
     }
 
-
+    public void infoAlert(String info){
+        Alert alert=new Alert(Alert.AlertType.INFORMATION,info,ButtonType.OK);
+        /*DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add("Alerts.css");
+        dialogPane.getStyleClass().add("Alert");*/
+        alert.show();
+    }
 
 
 
