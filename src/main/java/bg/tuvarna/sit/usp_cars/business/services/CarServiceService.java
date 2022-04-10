@@ -80,19 +80,22 @@ public class CarServiceService {
         if(findCarService(carServiceModel)!=null){
             log.info("CarService already exists!\n");
             return false;
-        }else{
-            CarService carService=new CarService(carServiceModel.getCar(), carServiceModel.getService(),
-                    carServiceModel.getMechanic(), carServiceModel.getPrice_service());
-            try{
-                repository.save(carService);
-                log.info("CarService created!\n");
-                return true;
-            }catch(Exception e){
-                log.error("Error creating CarService!\n");
-                e.printStackTrace();
-                return false;
-            }
+        }
+        if(carServiceModel.getCar()==null || carServiceModel.getService()==null || carServiceModel.getMechanic()==null){
+            log.error("Something is null!");
+            return false;
+        }
 
+        CarService carService=new CarService(carServiceModel.getCar(), carServiceModel.getService(),
+                carServiceModel.getMechanic(), carServiceModel.getPrice_service());
+        try{
+            repository.save(carService);
+            log.info("CarService created!\n");
+            return true;
+        }catch(Exception e){
+            log.error("Error creating CarService!\n");
+            e.printStackTrace();
+            return false;
         }
     }
 }

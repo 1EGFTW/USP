@@ -3,6 +3,7 @@ package bg.tuvarna.sit.usp_cars.business.services;
 import bg.tuvarna.sit.usp_cars.data.entities.Car;
 import bg.tuvarna.sit.usp_cars.data.entities.Service;
 import bg.tuvarna.sit.usp_cars.data.repositories.CarRepository;
+import bg.tuvarna.sit.usp_cars.data.repositories.OwnerRepository;
 import bg.tuvarna.sit.usp_cars.data.repositories.ServiceRepository;
 import bg.tuvarna.sit.usp_cars.presentation.models.CarModel;
 import bg.tuvarna.sit.usp_cars.presentation.models.OwnerModel;
@@ -51,16 +52,15 @@ public class CarService {
                 carModel.getPrice(), carModel.getDate_of_first_reg(),carModel.getMileage(), carModel.getType(),
                 carModel.getDiscount(), carModel.getOwner(), carModel.getPayment());
         for(Car c: repository.getAll()){
-            if(car.equals(c)){
+            if(c.equals(car)){ // ne raboti kakto trqbva
                 return c;
             }
-
         }
         return null;
     }
 
     public boolean addCar(CarModel carModel){
-        if(findCar(carModel)!=null){
+        if(findCar(carModel)!=null) {
             log.info("Car already exists!\n");
             return false;
         }else{
@@ -70,6 +70,8 @@ public class CarService {
                         carModel.getPrice(), carModel.getDate_of_first_reg(),carModel.getMileage(), carModel.getType(),
                         carModel.getDiscount(), carModel.getOwner(), carModel.getPayment());
                 repository.save(car);
+                car.getOwner().setNumber_of_cars_bought(car.getOwner().getNumber_of_cars_bought()+1);
+                OwnerRepository.getInstance().update(car.getOwner());
                 log.info("Car added successfully!\n");
                 return true;
             }catch(Exception e){

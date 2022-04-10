@@ -81,7 +81,7 @@ public class MechanicRepository implements DAORepository<Mechanic>{
         Transaction transaction= session.beginTransaction();
         List< Mechanic> mechanic = new LinkedList<>();
         try{
-            String jpql="SELECT g FROM Grape g";
+            String jpql="SELECT m FROM Mechanic m";
             mechanic.addAll(session.createQuery(jpql,  Mechanic.class).getResultList());
         }catch(Exception e){
             e.printStackTrace();
