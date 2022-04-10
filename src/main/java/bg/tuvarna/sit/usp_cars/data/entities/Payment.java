@@ -53,7 +53,7 @@ public class Payment implements Serializable {
         return payments;
     }
 
-    public void setPayments(Set<Car> paymenAlexanderts) {
+    public void setPayments(Set<Car> payments) {
         this.payments = payments;
     }
 

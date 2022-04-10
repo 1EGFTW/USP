@@ -211,7 +211,7 @@ public class Car implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return Objects.equals(manufacturer, car.manufacturer) && Objects.equals(model, car.model) && Objects.equals(vin, car.vin) && Objects.equals(price, car.price) && Objects.equals(owner, car.owner);
+        return mileage == car.mileage && Objects.equals(manufacturer, car.manufacturer) && Objects.equals(model, car.model) && Objects.equals(engine, car.engine) && Objects.equals(transmission, car.transmission) && Objects.equals(drive_type, car.drive_type) && Objects.equals(vin, car.vin) && Objects.equals(price, car.price) && Objects.equals(date_of_first_reg, car.date_of_first_reg) && Objects.equals(type, car.type) && Objects.equals(discount, car.discount) && Objects.equals(owner, car.owner) && Objects.equals(payment, car.payment);
     }
 
     @Override

@@ -102,7 +102,7 @@ public class MainController implements Initializable {
 
     public void onAddOwnerButtonClick(ActionEvent actionEvent){
         //code on Add owner button click
-        OwnerModel ownerModel=new OwnerModel(tfOwnerName.toString(),Integer.parseInt(tfCarsOwned.toString()));
+        OwnerModel ownerModel=new OwnerModel(tfOwnerName.getText(),Integer.parseInt(tfCarsOwned.getText()));
         OwnerService ownerService=OwnerService.getInstance();
         if(ownerService.addOwner(ownerModel)){
             Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"Owner added!",ButtonType.OK);
@@ -115,7 +115,7 @@ public class MainController implements Initializable {
 
     public void onAddPaymentButtonClick(ActionEvent actionEvent){
         //code on Add payment method button click
-        PaymentModel paymentModel=new PaymentModel(tfPaymentMethod.toString());
+        PaymentModel paymentModel=new PaymentModel(tfPaymentMethod.getText());
         PaymentService paymentService=PaymentService.getInstance();
         if(paymentService.addPayment(paymentModel)){
             Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"Payment added!",ButtonType.OK);
@@ -128,7 +128,7 @@ public class MainController implements Initializable {
 
     public void onAddMechanicButtonClick(ActionEvent actionEvent){
         //code on Add car method button click
-        MechanicModel mechanicModel=new MechanicModel(tfMechanicName.toString());
+        MechanicModel mechanicModel=new MechanicModel(tfMechanicName.getText());
         MechanicService mechanicService=MechanicService.getInstance();
         if(mechanicService.addMechanic(mechanicModel))
         {
@@ -142,7 +142,7 @@ public class MainController implements Initializable {
 
     public void onAddServiceButtonClick(ActionEvent actionEvent){
         //code on Add service method button click
-        ServiceModel serviceModel=new ServiceModel(tfServiceName.toString(),tfServiceType.toString());
+        ServiceModel serviceModel=new ServiceModel(tfServiceName.getText(),tfServiceType.getText());
         ServiceService service=ServiceService.getInstance();
         if(service.addService(serviceModel)){
             Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"Service added!",ButtonType.OK);
@@ -162,11 +162,11 @@ public class MainController implements Initializable {
         Calendar c =  Calendar.getInstance();
         c.set(ld.getYear(), ld.getMonthValue() - 1, ld.getDayOfMonth());
         Date date = c.getTime();
-        CarModel carModel=new CarModel(tfManufacturer.toString(),tfModel.toString(),tfEngine.toString(),
-                tfTransmission.toString(),tfDriveType.toString(),tfVin.toString(),
-                Double.parseDouble(tfPrice.toString()),date,
-                Integer.parseInt(tfMileage.toString()),tfVehicleType.toString(),
-                Double.parseDouble(tfDiscount.toString())
+        CarModel carModel=new CarModel(tfManufacturer.getText(),tfModel.getText(),tfEngine.getText(),
+                tfTransmission.getText(),tfDriveType.getText(),tfVin.getText(),
+                Double.parseDouble(tfPrice.getText()),date,
+                Integer.parseInt(tfMileage.getText()),tfVehicleType.getText(),
+                Double.parseDouble(tfDiscount.getText())
                 ,ownerService.findOwner(tfOwnerCombo.getValue()),
                 paymentService.findPaymentType(tfPaymentCombo.getValue()));
         if(carService.addCar(carModel)){
@@ -179,16 +179,16 @@ public class MainController implements Initializable {
 
     }
 
-    public void onAddCarServiceButtonClick(ActionEvent actionEvent){ //da se vidi komboboksovete dali da sa pylni s modeli ili entities
+    public void onAddCarServiceButtonClick(ActionEvent actionEvent){
         //code on Add carService method button click
         CarService carService=CarService.getInstance();
         MechanicService mechanicService=MechanicService.getInstance();
         ServiceService serviceService=ServiceService.getInstance();
         CarServiceService carServiceService=CarServiceService.getInstance();
-        Car car=carService.findCar(tfCarChoice.getValue());
+        Car car=carService.findCar(tfCarChoice.getValue()); //null
         Service service= serviceService.findService(tfServiceChoice.getValue());
         Mechanic mechanic= mechanicService.findMechanic(tfMechanicChoice.getValue());
-        CarServiceModel carServiceModel=new CarServiceModel(car,service,mechanic,Double.parseDouble(tfPriceService.toString()));
+        CarServiceModel carServiceModel=new CarServiceModel(car,service,mechanic,Double.parseDouble(tfPriceService.getText()));
         if(carServiceService.addCarService(carServiceModel)){
             Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"CarService added!",ButtonType.OK);
             alert.show();

@@ -36,7 +36,7 @@ public class PaymentService {
         Payment payment=new Payment(paymentModel.getPayment_type());
         for(Payment p:repository.getAll()){
             if(p.equals(payment))
-                return payment;
+                return p;
         }
         return null;
     }
