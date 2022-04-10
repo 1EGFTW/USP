@@ -3,6 +3,7 @@ package bg.tuvarna.sit.usp_cars.application;
 import bg.tuvarna.sit.usp_cars.common.Constants;
 import bg.tuvarna.sit.usp_cars.presentation.controllers.HelloController;
 import bg.tuvarna.sit.usp_cars.presentation.controllers.LoginController;
+import bg.tuvarna.sit.usp_cars.presentation.controllers.MainController;
 import bg.tuvarna.sit.usp_cars.presentation.controllers.RegistrationController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -24,11 +25,11 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
 
         PropertyConfigurator.configure(HelloApplication.class.getResource(Constants.Configurations.LOG4J_PROPERTIES));
-        URL path = getClass().getResource(Constants.View.LOGIN_VIEW);
+        URL path = getClass().getResource(Constants.View.MAIN_VIEW);
 
         if (path != null){
             FXMLLoader fxmlLoader=new FXMLLoader(path);
-            fxmlLoader.setController(new LoginController(stage));
+            fxmlLoader.setController(new MainController(stage));
             Parent root =fxmlLoader.load();
             Scene scene = new Scene(root);
             scene.setFill(Color.TRANSPARENT);
