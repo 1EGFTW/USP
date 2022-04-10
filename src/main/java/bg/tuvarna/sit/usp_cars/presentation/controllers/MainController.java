@@ -1,10 +1,11 @@
 package bg.tuvarna.sit.usp_cars.presentation.controllers;
 
+import bg.tuvarna.sit.usp_cars.business.services.*;
 import bg.tuvarna.sit.usp_cars.data.entities.Car;
 import bg.tuvarna.sit.usp_cars.data.entities.Mechanic;
+import bg.tuvarna.sit.usp_cars.data.entities.Owner;
 import bg.tuvarna.sit.usp_cars.data.entities.Service;
-import bg.tuvarna.sit.usp_cars.presentation.models.OwnerModel;
-import bg.tuvarna.sit.usp_cars.presentation.models.PaymentModel;
+import bg.tuvarna.sit.usp_cars.presentation.models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,9 +20,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.util.*;
 
 import static bg.tuvarna.sit.usp_cars.common.Constants.View.LOGIN_VIEW;
 
@@ -74,6 +74,10 @@ public class MainController implements Initializable {
     @FXML
     private TextField tfPrice;
     @FXML
+    private TextField tfMileage;
+    @FXML
+    private TextField tfMechanicName;
+    @FXML
     private DatePicker tfDateOfReg;
     @FXML
     private TextField tfVehicleType;
@@ -84,11 +88,13 @@ public class MainController implements Initializable {
     @FXML
     private ComboBox<PaymentModel> tfPaymentCombo;
     @FXML
-    private ComboBox<Car> tfCarChoice;
+    private ComboBox<CarModel> tfCarChoice;
     @FXML
-    private ComboBox<Service> tfServiceChoice;
+    private ComboBox<ServiceModel> tfServiceChoice;
     @FXML
-    private ComboBox<Mechanic> tfMechanicChoice;
+    private ComboBox<MechanicModel> tfMechanicChoice;
+    @FXML
+    private TextField tfPriceService; // da se dobavi v fxml
 
     public MainController(Stage stage){
         s=stage;
@@ -96,26 +102,102 @@ public class MainController implements Initializable {
 
     public void onAddOwnerButtonClick(ActionEvent actionEvent){
         //code on Add owner button click
+        OwnerModel ownerModel=new OwnerModel(tfOwnerName.toString(),Integer.parseInt(tfCarsOwned.toString()));
+        OwnerService ownerService=OwnerService.getInstance();
+        if(ownerService.addOwner(ownerModel)){
+            Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"Owner added!",ButtonType.OK);
+            alert.show();
+        }else {
+            Alert alert=new Alert(Alert.AlertType.WARNING,"Owner not added!",ButtonType.OK);
+            alert.show();
+        }
     }
 
     public void onAddPaymentButtonClick(ActionEvent actionEvent){
         //code on Add payment method button click
+        PaymentModel paymentModel=new PaymentModel(tfPaymentMethod.toString());
+        PaymentService paymentService=PaymentService.getInstance();
+        if(paymentService.addPayment(paymentModel)){
+            Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"Payment added!",ButtonType.OK);
+            alert.show();
+        }else {
+            Alert alert=new Alert(Alert.AlertType.WARNING,"Payment not added!",ButtonType.OK);
+            alert.show();
+        }
     }
 
     public void onAddMechanicButtonClick(ActionEvent actionEvent){
         //code on Add car method button click
+        MechanicModel mechanicModel=new MechanicModel(tfMechanicName.toString());
+        MechanicService mechanicService=MechanicService.getInstance();
+        if(mechanicService.addMechanic(mechanicModel))
+        {
+            Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"Mechanic added!",ButtonType.OK);
+            alert.show();
+        }else {
+            Alert alert=new Alert(Alert.AlertType.WARNING,"Mechanic not added!",ButtonType.OK);
+            alert.show();
+        }
     }
 
     public void onAddServiceButtonClick(ActionEvent actionEvent){
         //code on Add service method button click
+        ServiceModel serviceModel=new ServiceModel(tfServiceName.toString(),tfServiceType.toString());
+        ServiceService service=ServiceService.getInstance();
+        if(service.addService(serviceModel)){
+            Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"Service added!",ButtonType.OK);
+            alert.show();
+        }else {
+            Alert alert=new Alert(Alert.AlertType.WARNING,"Service not added!",ButtonType.OK);
+            alert.show();
+        }
     }
 
     public void onAddCarButtonClick(ActionEvent actionEvent){
         //code on Add car method button click
+        OwnerService ownerService=OwnerService.getInstance();
+        PaymentService paymentService=PaymentService.getInstance();
+        CarService carService=CarService.getInstance();
+        LocalDate ld = tfDateOfReg.getValue();
+        Calendar c =  Calendar.getInstance();
+        c.set(ld.getYear(), ld.getMonthValue() - 1, ld.getDayOfMonth());
+        Date date = c.getTime();
+        CarModel carModel=new CarModel(tfManufacturer.toString(),tfModel.toString(),tfEngine.toString(),
+                tfTransmission.toString(),tfDriveType.toString(),tfVin.toString(),
+                Double.parseDouble(tfPrice.toString()),date,
+                Integer.parseInt(tfMileage.toString()),tfVehicleType.toString(),
+                Double.parseDouble(tfDiscount.toString())
+                ,ownerService.findOwner(tfOwnerCombo.getValue()),
+                paymentService.findPaymentType(tfPaymentCombo.getValue()));
+        if(carService.addCar(carModel)){
+            Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"Car added!",ButtonType.OK);
+            alert.show();
+        }else {
+            Alert alert=new Alert(Alert.AlertType.WARNING,"Car not added!",ButtonType.OK);
+            alert.show();
+        }
+
     }
 
-    public void onAddCarServiceButtonClick(ActionEvent actionEvent){
+    public void onAddCarServiceButtonClick(ActionEvent actionEvent){ //da se vidi komboboksovete dali da sa pylni s modeli ili entities
         //code on Add carService method button click
+        CarService carService=CarService.getInstance();
+        MechanicService mechanicService=MechanicService.getInstance();
+        ServiceService serviceService=ServiceService.getInstance();
+        CarServiceService carServiceService=CarServiceService.getInstance();
+        Car car=carService.findCar(tfCarChoice.getValue());
+        Service service= serviceService.findService(tfServiceChoice.getValue());
+        Mechanic mechanic= mechanicService.findMechanic(tfMechanicChoice.getValue());
+        CarServiceModel carServiceModel=new CarServiceModel(car,service,mechanic,Double.parseDouble(tfPriceService.toString()));
+        if(carServiceService.addCarService(carServiceModel)){
+            Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"CarService added!",ButtonType.OK);
+            alert.show();
+        }else {
+            Alert alert=new Alert(Alert.AlertType.WARNING,"CarService not added!",ButtonType.OK);
+            alert.show();
+        }
+
+
     }
 
 
@@ -123,13 +205,19 @@ public class MainController implements Initializable {
     public void switchAddPane(ActionEvent actionEvent){
         switch (comboBoxChoices.getValue()){
             case "Car":
-                /*ObservableList<OwnerModel> owners=OwnerService.getInstance().getAllOwners();
+                ObservableList<OwnerModel> owners=OwnerService.getInstance().getAllOwners();
                 tfOwnerCombo.setItems(owners);
                 ObservableList<PaymentModel> payments=PaymentService.getInstance().getAllPayments();
-                tfPaymentCombo.setItems(payments);*/
+                tfPaymentCombo.setItems(payments);
                 switchRightPane(addCarPane, addPane);
                 break;
             case "CarService":
+                ObservableList<CarModel> cars=CarService.getInstance().getAllCars();
+                tfCarChoice.setItems(cars);
+                ObservableList<ServiceModel> services=ServiceService.getInstance().getAllServices();
+                tfServiceChoice.setItems(services);
+                ObservableList<MechanicModel> mechanics=MechanicService.getInstance().getAllMechanics();
+                tfMechanicChoice.setItems(mechanics);
                 switchRightPane(addCarServicePane, addPane);
                 break;
             case "Mechanic":
