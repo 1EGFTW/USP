@@ -2,3 +2,32 @@
 [JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.data.access.Connection  - Initial SessionFactory errororg.hibernate.AnnotationException: Use of @OneToMany or @ManyToMany targeting an unmapped class: bg.tuvarna.sit.usp_cars.data.entities.Car.carServices[bg.tuvarna.sit.usp_cars.data.entities.CarService]
 [JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.data.access.Connection  - Initial SessionFactory errororg.hibernate.AnnotationException: Use of @OneToMany or @ManyToMany targeting an unmapped class: bg.tuvarna.sit.usp_cars.data.entities.Car.carServices[bg.tuvarna.sit.usp_cars.data.entities.CarService]
 [JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.data.access.Connection  - Initial SessionFactory errororg.hibernate.AnnotationException: mappedBy reference an unknown target entity property: bg.tuvarna.sit.usp_cars.data.entities.Payment.payment in bg.tuvarna.sit.usp_cars.data.entities.Payment.payments
+[JavaFX Application Thread] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - Data truncation: Data too long for column 'mechanic_name' at row 1
+[JavaFX Application Thread] ERROR org.hibernate.AssertionFailure  - HHH000099: an assertion failure occurred (this may indicate a bug in Hibernate, but is more likely due to unsafe use of the session): org.hibernate.AssertionFailure: null id in bg.tuvarna.sit.usp_cars.data.entities.Mechanic entry (don't flush the Session after an exception occurs)
+[JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.MechanicService  - Error adding mechanic!
+[JavaFX Application Thread] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - Data truncation: Data too long for column 'mechanic_name' at row 1
+[JavaFX Application Thread] ERROR org.hibernate.AssertionFailure  - HHH000099: an assertion failure occurred (this may indicate a bug in Hibernate, but is more likely due to unsafe use of the session): org.hibernate.AssertionFailure: null id in bg.tuvarna.sit.usp_cars.data.entities.Mechanic entry (don't flush the Session after an exception occurs)
+[JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.MechanicService  - Error adding mechanic!
+[JavaFX Application Thread] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - Data truncation: Data too long for column 'mechanic_name' at row 1
+[JavaFX Application Thread] ERROR org.hibernate.AssertionFailure  - HHH000099: an assertion failure occurred (this may indicate a bug in Hibernate, but is more likely due to unsafe use of the session): org.hibernate.AssertionFailure: null id in bg.tuvarna.sit.usp_cars.data.entities.Mechanic entry (don't flush the Session after an exception occurs)
+[JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.MechanicService  - Error adding mechanic!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.MechanicService  - Mechanic Vladi added!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.OwnerService  - Owner Sasho added!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.PaymentService  - Payment type Cash added!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.ServiceService  - Service Oil and filters added!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarService  - Car added successfully!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - CarService created!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - CarService created!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - CarService created!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - CarService created!
+
+[JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - Something is null!
+[JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - Something is null!
