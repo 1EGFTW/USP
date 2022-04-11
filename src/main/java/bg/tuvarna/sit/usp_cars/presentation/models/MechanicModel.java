@@ -34,8 +34,6 @@ public class MechanicModel {
 
     @Override
     public String toString() {
-        return "MechanicModel{" +
-                "mechanic_name='" + mechanic_name + '\'' +
-                '}';
+        return "Mechanic's name: " + mechanic_name;
     }
 }

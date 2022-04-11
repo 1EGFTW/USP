@@ -60,10 +60,6 @@ public class UserModel {
 
     @Override
     public String toString() {
-        return "UserModel{" +
-                "user_username='" + user_username + '\'' +
-                ", user_password='" + user_password + '\'' +
-                ", is_admin=" + is_admin +
-                '}';
+        return "Username: " + user_username;
     }
 }

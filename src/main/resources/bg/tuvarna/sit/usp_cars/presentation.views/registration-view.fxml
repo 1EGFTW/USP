@@ -6,10 +6,14 @@
 
 <AnchorPane prefHeight="765.0" prefWidth="1024.0" stylesheets="@css/MainPages.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Pane prefHeight="765.0" prefWidth="512.0" styleClass="leftMenu">
-            <children>
-            </children>
-        </Pane>
+      <Pane layoutX="27.0" layoutY="350.0" prefHeight="246.0" prefWidth="445.0" styleClass="rightField">
+         <children>
+            <Button layoutX="173.0" layoutY="169.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="100.0" styleClass="inputButton" text="Confirm" />
+            <Label layoutX="106.0" layoutY="44.0" styleClass="secondTitle" text="Please enter the verification code" />
+            <TextField fx:id="verification_code" layoutX="123.0" layoutY="101.0" prefHeight="45.0" prefWidth="200.0" styleClass="inputFields" />
+         </children>
+      </Pane>
+        <Pane prefHeight="765.0" prefWidth="512.0" styleClass="leftMenu" />
         <Pane layoutX="512.0" maxHeight="765.0" maxWidth="651.0" minHeight="500.0" minWidth="373.0" prefHeight="765.0" prefWidth="512.0" styleClass="rightField">
             <children>
                 <Label layoutX="106.0" layoutY="177.0" styleClass="secondTitle" text="Please enter your username and password:" textAlignment="CENTER" wrapText="true" />
@@ -19,13 +23,14 @@
                     <font>
                         <Font size="10.0" />
                     </font></Button>
-                <Label styleClass="secondTitle" layoutX="155.0" layoutY="270.0" text="Username" />
-                <Label styleClass="secondTitle" layoutX="157.0" layoutY="356.0" text="Password" />
+                <Label layoutX="155.0" layoutY="270.0" styleClass="secondTitle" text="Username" />
+                <Label layoutX="157.0" layoutY="356.0" styleClass="secondTitle" text="Password" />
                 <Button layoutX="148.0" layoutY="543.0" mnemonicParsing="false" onAction="#onAlreadyRegisteredButtonClick" prefHeight="30.0" prefWidth="283.0" styleClass="emptyButton" text="Already have an account? Click here!" />
                 <Label alignment="CENTER" layoutX="148.0" layoutY="102.0" styleClass="headTitle" text="Registration" textAlignment="CENTER">
                     <font>
                         <Font size="24.0" />
                     </font></Label>
+            <CheckBox fx:id="is_admin" layoutX="154.0" layoutY="453.0" mnemonicParsing="false" text="Is admin" />
             </children>
         </Pane>
     </children>

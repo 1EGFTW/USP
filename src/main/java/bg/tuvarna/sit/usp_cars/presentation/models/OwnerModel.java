@@ -45,9 +45,6 @@ public class OwnerModel {
 
     @Override
     public String toString() {
-        return "OwnerModel{" +
-                "owner_name='" + owner_name + '\'' +
-                ", number_of_cars_bought=" + number_of_cars_bought +
-                '}';
+        return "owner's name: " + owner_name;
     }
 }

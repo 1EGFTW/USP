@@ -1,11 +1,11 @@
 package bg.tuvarna.sit.usp_cars.presentation.controllers;
 
 import bg.tuvarna.sit.usp_cars.business.services.*;
-import bg.tuvarna.sit.usp_cars.data.entities.Car;
-import bg.tuvarna.sit.usp_cars.data.entities.Mechanic;
-import bg.tuvarna.sit.usp_cars.data.entities.Owner;
-import bg.tuvarna.sit.usp_cars.data.entities.Service;
+import bg.tuvarna.sit.usp_cars.business.services.CarService;
+import bg.tuvarna.sit.usp_cars.data.entities.*;
 import bg.tuvarna.sit.usp_cars.presentation.models.*;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,8 +16,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -46,9 +48,25 @@ public class MainController implements Initializable {
     private ScrollPane addCarPane;
     @FXML
     private Pane addCarServicePane;
+    @FXML
+    private Pane checkPane;
+    @FXML
+    private Pane checkMechanicPane;
+    @FXML
+    private Pane checkOwnerPane;
+    @FXML
+    private Pane checkPaymentPane;
+    @FXML
+    private Pane checkServicePane;
+    @FXML
+    private Pane checkCarPane;
+    @FXML
+    private Pane checkCarServicePane;
 
     @FXML
     private ComboBox<String> comboBoxChoices;
+    @FXML
+    private ComboBox<String> comboBoxCheckChoices;
     @FXML
     private TextField tfOwnerName;
     @FXML
@@ -94,7 +112,65 @@ public class MainController implements Initializable {
     @FXML
     private ComboBox<MechanicModel> tfMechanicChoice;
     @FXML
-    private TextField tfPriceService; // da se dobavi v fxml
+    private TextField tfPriceService;
+    @FXML
+    private TableView<MechanicModel> mechanicTable = new TableView<>();
+    @FXML
+    private TableColumn<MechanicModel, String> mechanicName = new TableColumn<>();
+    @FXML
+    private TableView<OwnerModel> ownerTable = new TableView<>();
+    @FXML
+    private TableColumn<OwnerModel, String> ownerName = new TableColumn<>();
+    @FXML
+    private TableColumn<OwnerModel, Integer> ownerCarsOwned = new TableColumn<>();
+    @FXML
+    private TableView<PaymentModel> paymentTable = new TableView<>();
+    @FXML
+    private TableColumn<OwnerModel, String> paymentType = new TableColumn<>();
+    @FXML
+    private TableView<ServiceModel> serviceTable = new TableView<>();
+    @FXML
+    private TableColumn<ServiceModel, String> serviceName = new TableColumn<>();
+    @FXML
+    private TableColumn<ServiceModel, String> serviceType = new TableColumn<>();
+    @FXML
+    private TableView<CarModel> carTable = new TableView<>();
+    @FXML
+    private TableColumn<CarModel, String> carManufacturer = new TableColumn<>();
+    @FXML
+    private TableColumn<CarModel, String> carModel = new TableColumn<>();
+    @FXML
+    private TableColumn<CarModel, String> carEngine = new TableColumn<>();
+    @FXML
+    private TableColumn<CarModel, String> carTransmission = new TableColumn<>();
+    @FXML
+    private TableColumn<CarModel, String> carDriveType = new TableColumn<>();
+    @FXML
+    private TableColumn<CarModel, String> carVin = new TableColumn<>();
+    @FXML
+    private TableColumn<CarModel, Double> carPrice = new TableColumn<>();
+    @FXML
+    private TableColumn<CarModel, Date> carDate = new TableColumn<>();
+    @FXML
+    private TableColumn<CarModel, Integer> carMileage = new TableColumn<>();
+    @FXML
+    private TableColumn<CarModel, String> carType = new TableColumn<>();
+    @FXML
+    private TableColumn<CarModel, Double> carDiscount = new TableColumn<>();
+    @FXML
+    private TableColumn<CarModel, String> carOwner = new TableColumn<>();
+    @FXML
+    private TableColumn<CarModel, String> carPayment = new TableColumn<>();
+    @FXML
+    private TableView<CarServiceModel> carServiceTable = new TableView<>();
+    @FXML
+    private TableColumn<CarServiceModel, String> tbCarServiceCar = new TableColumn<>();
+    @FXML
+    private TableColumn<CarServiceModel, String> tbCarServiceService = new TableColumn<>();
+    @FXML
+    private TableColumn<CarServiceModel, String> tbCarServiceMechanic = new TableColumn<>();
+    @FXML
+    private TableColumn<CarServiceModel, Double> tbCarServicePrice = new TableColumn<>();
 
     public MainController(Stage stage){
         s=stage;
@@ -105,11 +181,9 @@ public class MainController implements Initializable {
         OwnerModel ownerModel=new OwnerModel(tfOwnerName.getText(),Integer.parseInt(tfCarsOwned.getText()));
         OwnerService ownerService=OwnerService.getInstance();
         if(ownerService.addOwner(ownerModel)){
-            Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"Owner added!",ButtonType.OK);
-            alert.show();
+            showAlert(Alert.AlertType.CONFIRMATION,"Owner added!");
         }else {
-            Alert alert=new Alert(Alert.AlertType.WARNING,"Owner not added!",ButtonType.OK);
-            alert.show();
+            showAlert(Alert.AlertType.WARNING,"Owner not added!");
         }
     }
 
@@ -118,11 +192,9 @@ public class MainController implements Initializable {
         PaymentModel paymentModel=new PaymentModel(tfPaymentMethod.getText());
         PaymentService paymentService=PaymentService.getInstance();
         if(paymentService.addPayment(paymentModel)){
-            Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"Payment added!",ButtonType.OK);
-            alert.show();
+            showAlert(Alert.AlertType.CONFIRMATION,"Payment added!");
         }else {
-            Alert alert=new Alert(Alert.AlertType.WARNING,"Payment not added!",ButtonType.OK);
-            alert.show();
+            showAlert(Alert.AlertType.WARNING,"Payment not added!");
         }
     }
 
@@ -132,11 +204,9 @@ public class MainController implements Initializable {
         MechanicService mechanicService=MechanicService.getInstance();
         if(mechanicService.addMechanic(mechanicModel))
         {
-            Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"Mechanic added!",ButtonType.OK);
-            alert.show();
+            showAlert(Alert.AlertType.CONFIRMATION,"Mechanic added!");
         }else {
-            Alert alert=new Alert(Alert.AlertType.WARNING,"Mechanic not added!",ButtonType.OK);
-            alert.show();
+            showAlert(Alert.AlertType.WARNING,"Mechanic not added!");
         }
     }
 
@@ -145,11 +215,9 @@ public class MainController implements Initializable {
         ServiceModel serviceModel=new ServiceModel(tfServiceName.getText(),tfServiceType.getText());
         ServiceService service=ServiceService.getInstance();
         if(service.addService(serviceModel)){
-            Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"Service added!",ButtonType.OK);
-            alert.show();
+            showAlert(Alert.AlertType.CONFIRMATION,"Service added!");
         }else {
-            Alert alert=new Alert(Alert.AlertType.WARNING,"Service not added!",ButtonType.OK);
-            alert.show();
+            showAlert(Alert.AlertType.WARNING,"Service not added!");
         }
     }
 
@@ -170,11 +238,9 @@ public class MainController implements Initializable {
                 ,ownerService.findOwner(tfOwnerCombo.getValue()),
                 paymentService.findPaymentType(tfPaymentCombo.getValue()));
         if(carService.addCar(carModel)){
-            Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"Car added!",ButtonType.OK);
-            alert.show();
+            showAlert(Alert.AlertType.CONFIRMATION,"Car added!");
         }else {
-            Alert alert=new Alert(Alert.AlertType.WARNING,"Car not added!",ButtonType.OK);
-            alert.show();
+            showAlert(Alert.AlertType.WARNING,"Car not added!");
         }
 
     }
@@ -190,11 +256,9 @@ public class MainController implements Initializable {
         Mechanic mechanic= mechanicService.findMechanic(tfMechanicChoice.getValue());
         CarServiceModel carServiceModel=new CarServiceModel(car,service,mechanic,Double.parseDouble(tfPriceService.getText()));
         if(carServiceService.addCarService(carServiceModel)){
-            Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"CarService added!",ButtonType.OK);
-            alert.show();
+            showAlert(Alert.AlertType.CONFIRMATION,"CarService added!");
         }else {
-            Alert alert=new Alert(Alert.AlertType.WARNING,"CarService not added!",ButtonType.OK);
-            alert.show();
+            showAlert(Alert.AlertType.WARNING,"CarService not added!");
         }
 
 
@@ -209,7 +273,7 @@ public class MainController implements Initializable {
                 tfOwnerCombo.setItems(owners);
                 ObservableList<PaymentModel> payments=PaymentService.getInstance().getAllPayments();
                 tfPaymentCombo.setItems(payments);
-                switchRightPane(addCarPane, addPane);
+                switchDoublePane(addCarPane, addPane);
                 break;
             case "CarService":
                 ObservableList<CarModel> cars=CarService.getInstance().getAllCars();
@@ -218,36 +282,126 @@ public class MainController implements Initializable {
                 tfServiceChoice.setItems(services);
                 ObservableList<MechanicModel> mechanics=MechanicService.getInstance().getAllMechanics();
                 tfMechanicChoice.setItems(mechanics);
-                switchRightPane(addCarServicePane, addPane);
+                switchDoublePane(addCarServicePane, addPane);
                 break;
             case "Mechanic":
-                switchRightPane(addMechanicPane, addPane);
+                switchDoublePane(addMechanicPane, addPane);
                 break;
             case "Owner":
-                switchRightPane(addOwnerPane, addPane);
+                switchDoublePane(addOwnerPane, addPane);
                 break;
             case "Payment method":
-                switchRightPane(addPaymentPane, addPane);
+                switchDoublePane(addPaymentPane, addPane);
                 break;
             case "Service":
-                switchRightPane(addServicePane, addPane);
+                switchDoublePane(addServicePane, addPane);
                 break;
+            case "null": showAlert(Alert.AlertType.WARNING, "Please choose an option from the combo box!"); //not working
+
+        }
+    }
+
+    public void switchCheckPane(ActionEvent actionEvent){
+        switch (comboBoxCheckChoices.getValue()){
+            case "Car":
+                CarService carService=CarService.getInstance();
+                ObservableList<CarModel> carListViewModels=carService.getAllCars();
+                carManufacturer.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+                carModel.setCellValueFactory(new PropertyValueFactory<>("model"));
+                carEngine.setCellValueFactory(new PropertyValueFactory<>("engine"));
+                carTransmission.setCellValueFactory(new PropertyValueFactory<>("transmission"));
+                carDriveType.setCellValueFactory(new PropertyValueFactory<>("drive_type"));
+                carVin.setCellValueFactory(new PropertyValueFactory<>("vin"));
+                carPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+                carDate.setCellValueFactory(new PropertyValueFactory<>("date_of_first_reg"));
+                carMileage.setCellValueFactory(new PropertyValueFactory<>("mileage"));
+                carType.setCellValueFactory(new PropertyValueFactory<>("type"));
+                carDiscount.setCellValueFactory(new PropertyValueFactory<>("discount"));
+                carOwner.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<CarModel, String>, ObservableValue<String>>() {
+                    @Override
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<CarModel, String> o) {
+                        return new ReadOnlyObjectWrapper(o.getValue().getOwner().getOwner_name());
+                    }
+                });
+                carPayment.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<CarModel, String>, ObservableValue<String>>() {
+                    @Override
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<CarModel, String> o) {
+                        return new ReadOnlyObjectWrapper(o.getValue().getPayment().getPayment_type());
+                    }
+                });
+                carTable.setItems(carListViewModels);
+                switchDoublePane(checkCarPane, checkPane);
+                break;
+            case "CarService":
+                CarServiceService carServiceService=CarServiceService.getInstance();
+                ObservableList<CarServiceModel> carServiceModels=carServiceService.getAllCarServices();
+                tbCarServiceCar.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<CarServiceModel, String>, ObservableValue<String>>() {
+                    @Override
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<CarServiceModel, String> o) {
+                        return new ReadOnlyObjectWrapper(o.getValue().getCar().getVin());
+                    }
+                });
+                tbCarServiceService.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<CarServiceModel, String>, ObservableValue<String>>() {
+                    @Override
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<CarServiceModel, String> o) {
+                        return new ReadOnlyObjectWrapper(o.getValue().getService().getService_name());
+                    }
+                });
+                tbCarServiceMechanic.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<CarServiceModel, String>, ObservableValue<String>>() {
+                    @Override
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<CarServiceModel, String> o) {
+                        return new ReadOnlyObjectWrapper(o.getValue().getMechanic().getMechanic_name());
+                    }
+                });
+                tbCarServicePrice.setCellValueFactory(new PropertyValueFactory<>("price_service"));
+                switchDoublePane(checkCarServicePane, checkPane);
+                break;
+            case "Mechanic":
+                MechanicService mechanicService=MechanicService.getInstance();
+                ObservableList<MechanicModel> mechanicListViewModels=mechanicService.getAllMechanics();
+                mechanicName.setCellValueFactory(new PropertyValueFactory<>("mechanic_name"));
+                mechanicTable.setItems(mechanicListViewModels);
+                switchDoublePane(checkMechanicPane, checkPane);
+                break;
+            case "Owner":
+                OwnerService ownerService=OwnerService.getInstance();
+                ObservableList<OwnerModel> ownerListViewModels=ownerService.getAllOwners();
+                ownerName.setCellValueFactory(new PropertyValueFactory<>("owner_name"));
+                ownerCarsOwned.setCellValueFactory(new PropertyValueFactory<>("number_of_cars_bought"));
+                ownerTable.setItems(ownerListViewModels);
+                switchDoublePane(checkOwnerPane, checkPane);
+                break;
+            case "Payment method":
+                PaymentService paymentService=PaymentService.getInstance();
+                ObservableList<PaymentModel> paymentListViewModels=paymentService.getAllPayments();
+                paymentType.setCellValueFactory(new PropertyValueFactory<>("payment_type"));
+                paymentTable.setItems(paymentListViewModels);
+                switchDoublePane(checkPaymentPane, checkPane);
+                break;
+            case "Service":
+                ServiceService serviceService=ServiceService.getInstance();
+                ObservableList<ServiceModel> serviceListViewModels=serviceService.getAllServices();
+                serviceName.setCellValueFactory(new PropertyValueFactory<>("service_name"));
+                serviceType.setCellValueFactory(new PropertyValueFactory<>("service_type"));
+                serviceTable.setItems(serviceListViewModels);
+                switchDoublePane(checkServicePane, checkPane);
+                break;
+            case "null": showAlert(Alert.AlertType.WARNING, "Please choose an option from the combo box!"); //not working
 
         }
     }
 
     @FXML
     public void switchToAdd(ActionEvent actionEvent){
-        switchDoublePane(addPane);
+        switchDoublePane(addPane, logoPane);
     }
 
-    public void switchDoublePane(Node paneName){
-        wrapperPane.getChildren().clear();
-        wrapperPane.getChildren().add(paneName);
-        wrapperPane.getChildren().add(logoPane);
+    @FXML
+    public void switchToCheck(ActionEvent actionEvent){
+        switchDoublePane(checkPane, logoPane);
     }
 
-    public void switchRightPane(Node paneName, Node frontPane){
+    public void switchDoublePane(Node paneName, Node frontPane){
         wrapperPane.getChildren().clear();
         wrapperPane.getChildren().add(frontPane);
         wrapperPane.getChildren().add(paneName);
@@ -286,10 +440,11 @@ public class MainController implements Initializable {
         choices.add("Payment method");
         choices.add("Service");
         comboBoxChoices.setItems(FXCollections.observableList(choices));
+        comboBoxCheckChoices.setItems(FXCollections.observableList(choices));
     }
 
-    public void infoAlert(String info){
-        Alert alert=new Alert(Alert.AlertType.INFORMATION,info, ButtonType.OK);
+    public void showAlert(Alert.AlertType type, String info){
+        Alert alert=new Alert(type, info, ButtonType.OK);
         /*DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add("Alerts.css");
         dialogPane.getStyleClass().add("Alert");*/

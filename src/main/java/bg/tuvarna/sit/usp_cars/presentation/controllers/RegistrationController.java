@@ -28,6 +28,10 @@ public class RegistrationController {
     public Button login;
     @FXML
     public Button emptyButton;
+    @FXML
+    public CheckBox is_admin;
+    @FXML
+    public TextField verification_code;
     private final UserService userService= UserService.getInstance();
 
     public RegistrationController(Stage stage){
