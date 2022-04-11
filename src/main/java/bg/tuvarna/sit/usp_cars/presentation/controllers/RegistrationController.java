@@ -11,7 +11,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static bg.tuvarna.sit.usp_cars.common.Constants.View.LOGIN_VIEW;
+import static bg.tuvarna.sit.usp_cars.common.Constants.View.MAIN_VIEW;
 
 public class RegistrationController {
 
@@ -33,16 +37,35 @@ public class RegistrationController {
 
     @FXML
     public void onRegistrationButtonClick(ActionEvent actionEvent) {
-        UserModel userToReg = new UserModel(user_username.getText(),user_password.getText());
-        if(!userService.registerNewUser(userToReg))
-        {
-            infoAlert("User already exists!");
+        Pattern pattern = Pattern.compile("[0-9]");
+        Matcher matcher = pattern.matcher(user_username.getText());
+        boolean matchFound = matcher.find();
+        Matcher matcher1 = pattern.matcher(user_password.getText());
+        boolean matchFound1 = matcher1.find();
+        if(matchFound && user_username.getLength()>=6) {
+            if(matchFound1 && user_password.getLength()>=6){
+                UserModel userToReg = new UserModel(user_username.getText(),user_password.getText());
+                if(!userService.registerNewUser(userToReg))
+                {
+                    infoAlert("User already exists!");
+                    user_username.setText("");
+                    user_password.setText("");
+                }
+                else{
+                    infoAlert("User registered in successfully!");
+                    loadNewPage(LOGIN_VIEW);
+                }
+
+            }else{
+                infoAlert("Password must contain at least 1 number and be longer than 6 characters");
+                user_username.setText("");
+                user_password.setText("");
+            }
+
+        } else {
+            infoAlert("Username must contain at least 1 number and be longer than 6 characters");
             user_username.setText("");
             user_password.setText("");
-        }
-        else{
-            infoAlert("User registered in successfully!");
-            loadNewPage(LOGIN_VIEW);
         }
     }
 
