@@ -4,12 +4,17 @@ import bg.tuvarna.sit.usp_cars.business.services.UserService;
 import bg.tuvarna.sit.usp_cars.data.entities.User;
 import bg.tuvarna.sit.usp_cars.presentation.models.UserModel;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static bg.tuvarna.sit.usp_cars.common.Constants.View.*;
 
