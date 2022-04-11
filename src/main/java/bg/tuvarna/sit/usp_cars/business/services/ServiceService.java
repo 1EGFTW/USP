@@ -60,6 +60,53 @@ public class ServiceService {
             }
         }
     }
+    public Service findServiceByName(String name){
+        for(Service s:repository.getAll()){
+            if(s.getService_name().equals(name))
+                return s;
+        }
+        return null;
+    }
+    public Service findServiceByType(String type){
+        for(Service s:repository.getAll()){
+            if(s.getService_type().equals(type))
+                return s;
+        }
+        return null;
+    }
+    public boolean updateService(ServiceModel serviceModel){
+        if(findServiceByName(serviceModel.getService_name())==null){
+            log.error("No such service");
+            return false;
+        }
+        try{
+            Service service=findServiceByName(serviceModel.getService_name());
+            service.setService_type(serviceModel.getService_type());
+            repository.update(service);
+            log.info("Service "+service.getService_name()+" updated!");
+            return true;
+        }catch(Exception e){
+            log.error("Error updating service!");
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean deleteService(ServiceModel serviceModel){
+        if(findService(serviceModel)==null){
+            log.error("No such service");
+            return false;
+        }
+        try{
+            Service service=findService(serviceModel);
+            repository.delete(service);
+            log.info("Service "+service.getService_name()+" deleted!");
+            return true;
+        }catch(Exception e){
+            log.error("Error deleting service!");
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
 
 

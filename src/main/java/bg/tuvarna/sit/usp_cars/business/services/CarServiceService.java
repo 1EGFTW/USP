@@ -48,8 +48,8 @@ public class CarServiceService {
         return null;
     }
 
-    public CarService findByCarName(CarModel c){
-        Car car= bg.tuvarna.sit.usp_cars.business.services.CarService.getInstance().findCar(c);
+    public CarService findByCar(Car c){
+        Car car= bg.tuvarna.sit.usp_cars.business.services.CarService.getInstance().findCarByVin(c.getVin());
         List<CarService> carServices=repository.getAll();
         for(CarService cs:carServices){
             if(cs.getCar().equals(car))
@@ -57,8 +57,8 @@ public class CarServiceService {
         }
         return null;
     }
-    public CarService findByServiceName(ServiceModel s){
-        Service service=ServiceService.getInstance().findService(s);
+    public CarService findByServiceName(Service s){
+        Service service=ServiceService.getInstance().findServiceByName(s.getService_name());
         List<CarService> carServices=repository.getAll();
         for(CarService cs:carServices){
             if(cs.getService().equals(service))
@@ -66,8 +66,8 @@ public class CarServiceService {
         }
         return null;
     }
-    public CarService findByMechanicName(MechanicModel m){
-        Mechanic mechanic=MechanicService.getInstance().findMechanic(m);
+    public CarService findByMechanicName(Mechanic m){
+        Mechanic mechanic=MechanicService.getInstance().findMechanicByName(m.getMechanic_name());
         List<CarService> carServices=repository.getAll();
         for(CarService cs:carServices){
             if(cs.getMechanic().equals(mechanic))
@@ -94,6 +94,41 @@ public class CarServiceService {
             return true;
         }catch(Exception e){
             log.error("Error creating CarService!\n");
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean updateCarService(CarServiceModel carServiceModel){ // moje da dade greshka pri razlichni id-ta i ednakvi servici
+        if(findByCar(carServiceModel.getCar())==null){
+            log.error("No such service!");
+            return false;
+        }
+        try{
+            CarService carService=findByCar(carServiceModel.getCar());
+            carService.setService(carServiceModel.getService());
+            carService.setMechanic(carServiceModel.getMechanic());
+            carService.setPrice_service(carServiceModel.getPrice_service());
+            repository.update(carService);
+            log.info("Car service updated!");
+            return true;
+        }catch(Exception e){
+            log.error("Error updating carService!");
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean deleteCarService(CarServiceModel carServiceModel){
+        if(findCarService(carServiceModel)==null){
+            log.error("No such service!");
+            return false;
+        }
+        try{
+            CarService carService=findCarService(carServiceModel);
+            repository.delete(carService);
+            log.info("Car service deleted!");
+            return true;
+        }catch(Exception e){
+            log.error("Error deleting carService!");
             e.printStackTrace();
             return false;
         }
