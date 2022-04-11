@@ -31,3 +31,4 @@
 
 [JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - Something is null!
 [JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - Something is null!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.UserService  - User gregfwedq1 created!
