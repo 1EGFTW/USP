@@ -81,4 +81,56 @@ public class CarService {
             }
         }
     }
+
+    public Car findCarByVin(String vin){
+        for(Car c: repository.getAll()){
+            if(c.getVin().equals(vin))
+                return c;
+        }
+        return null;
+    }
+    public boolean updateCar(CarModel carModel){
+        if(findCarByVin(carModel.getVin())==null){
+            log.error("No such car!");
+            return false;
+        }
+        try{
+            Car car=findCarByVin(carModel.getVin());
+            car.setModel(carModel.getModel());
+            car.setManufacturer(carModel.getManufacturer());
+            car.setDiscount(carModel.getDiscount());
+            car.setDate_of_first_reg(carModel.getDate_of_first_reg());
+            car.setDrive_type(carModel.getDrive_type());
+            car.setEngine(carModel.getEngine());
+            car.setTransmission(carModel.getTransmission());
+            car.setMileage(carModel.getMileage());
+            car.setOwner(carModel.getOwner());
+            car.setPayment(carModel.getPayment());
+            car.setPrice(carModel.getPrice());
+            car.setType(carModel.getType());
+            repository.update(car);
+            log.info("Car updated successfully!");
+            return true;
+        }catch(Exception e){
+            log.error("Error updating car!");
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean deleteCar(CarModel carModel){
+        if(findCarByVin(carModel.getVin())==null){
+            log.error("No such car!");
+            return false;
+        }
+        try{
+            Car car=findCarByVin(carModel.getVin());
+            repository.delete(car);
+            log.info("Car deleted successfully!");
+            return true;
+        }catch(Exception e){
+            log.error("Error deleting car!");
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

@@ -57,4 +57,39 @@ public class PaymentService {
             }
         }
     }
+    public boolean updatePayment(PaymentModel paymentModel){
+        if(findPaymentType(paymentModel)==null)
+        {
+            log.error("No such payment!");
+            return false;
+        }
+        try{
+            Payment payment=findPaymentType(paymentModel);
+            payment.setPayment_type(paymentModel.getPayment_type());
+            repository.update(payment);
+            log.info("Payment updated successfully!");
+            return true;
+        }catch(Exception e){
+            log.error("Error updating payment!");
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean deletePayment(PaymentModel paymentModel){
+        if(findPaymentType(paymentModel)==null)
+        {
+            log.error("No such payment!");
+            return false;
+        }
+        try{
+            Payment payment=findPaymentType(paymentModel);
+            repository.delete(payment);
+            log.info("Payment deleted successfully!");
+            return true;
+        }catch(Exception e){
+            log.error("Error deleting payment!");
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

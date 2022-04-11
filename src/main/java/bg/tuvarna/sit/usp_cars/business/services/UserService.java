@@ -101,7 +101,49 @@ public class UserService {
                 log.error("Create user error!");
             }
             return true;
-        }
 
+         }
     }
+    public boolean deleteUser(UserModel userModel){
+        if(findUser(userModel)==null){
+            log.error("No such user!");
+            return false;
+        }
+        User user=findUser(userModel);
+        try{
+            repository.delete(user);
+            log.info("User "+user.getUser_username()+" deleted successfully!\n");
+            return true;
+        }catch(Exception e){
+            log.error("Something went wrong deleting user!\n");
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public User findUserByUsername(String name){
+        for(User u: repository.getAll()){
+            if(u.getUser_username().equals(name))
+                return u;
+        }
+        return null;
+    }
+    public boolean updateUser(UserModel usermodel){
+        if(findUserByUsername(usermodel.getUser_username())==null){
+            log.error("No such user!");
+            return false;
+        }
+        try {
+            User temp = findUserByUsername(usermodel.getUser_username());
+            String pass = new String(hashPassword(usermodel.getUser_password()));
+            temp.setUser_password(pass);
+            repository.update(temp);
+            log.info("Password for user "+temp.getUser_username()+" changed successfully!\n");
+            return true;
+        }catch(Exception e){
+            log.error("Error updating password!\n");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

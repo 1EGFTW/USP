@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.apache.log4j.Logger;
 
+import java.security.spec.ECField;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,6 +43,13 @@ public class MechanicService {
         }
         return null;
     }
+    public Mechanic findMechanicByName(String name){
+        for(Mechanic m: repository.getAll()){
+            if(m.getMechanic_name().equals(name))
+                return m;
+        }
+        return null;
+    }
     public boolean addMechanic(MechanicModel mechanicModel){
         if(findMechanic(mechanicModel)!=null){
             log.info("Mechanic "+mechanicModel.getMechanic_name()+" already exists!\n");
@@ -58,7 +66,22 @@ public class MechanicService {
                 return false;
             }
         }
-
     }
+   public boolean deleteMechanic(MechanicModel mechanicModel){
+        if(findMechanic(mechanicModel)==null){
+            log.error("No such mechanic!");
+            return false;
+        }
+        try{
+            Mechanic mechanic=findMechanic(mechanicModel);
+            repository.delete(mechanic);
+            log.info("Mechanic "+mechanic.getMechanic_name()+" deleted successfully!");
+            return true;
+        }catch(Exception e){
+            log.error("Error deleting mechanic!");
+            e.printStackTrace();
+            return false;
+        }
+   }
 
 }

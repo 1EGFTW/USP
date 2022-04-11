@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.apache.log4j.Logger;
 
+import java.security.spec.ECField;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,6 +59,46 @@ public class OwnerService {
                 return false;
             }
         }
-
+    }
+    public Owner findOwnerByName(String name){
+        for(Owner o: repository.getAll()){
+            if(o.getOwner_name().equals(name)){
+                return o;
+            }
+        }
+        return null;
+    }
+    public boolean updateOwner(OwnerModel ownerModel){
+        if(findOwnerByName(ownerModel.getOwner_name())==null){
+            log.error("No such owner!");
+            return false;
+        }
+        try{
+            Owner owner=findOwnerByName(ownerModel.getOwner_name());
+            owner.setNumber_of_cars_bought(ownerModel.getNumber_of_cars_bought());
+            repository.update(owner);
+            log.info("Successfully updated owner "+owner.getOwner_name()+"!");
+            return true;
+        }catch (Exception e){
+            log.error("Error updating owner!");
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean deleteOwner(OwnerModel ownerModel){
+        if(findOwner(ownerModel)==null){
+            log.error("No such owner!");
+            return false;
+        }
+        try{
+            Owner owner=findOwner(ownerModel);
+            repository.delete(owner);
+            log.info("Successfully deleted owner "+owner.getOwner_name()+"!");
+            return true;
+        }catch (Exception e){
+            log.error("Error deleting owner!");
+            e.printStackTrace();
+            return false;
+        }
     }
 }
