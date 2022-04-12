@@ -1,6 +1,7 @@
 package bg.tuvarna.sit.usp_cars.presentation.controllers;
 
 import bg.tuvarna.sit.usp_cars.business.services.UserService;
+import bg.tuvarna.sit.usp_cars.common.Constants;
 import bg.tuvarna.sit.usp_cars.data.entities.User;
 import bg.tuvarna.sit.usp_cars.presentation.models.UserModel;
 import javafx.event.ActionEvent;
@@ -49,6 +50,11 @@ public class RegistrationController {
         if(matchFound && user_username.getLength()>=6) {
             if(matchFound1 && user_password.getLength()>=6){
                 UserModel userToReg = new UserModel(user_username.getText(),user_password.getText());
+                if(is_admin.isSelected()){
+                    if(verification_code.getText().equals(Constants.Values.MASTER_KEY)){
+                        userToReg.setIs_admin(true);
+                    }
+                }
                 if(!userService.registerNewUser(userToReg))
                 {
                     infoAlert("User already exists!");

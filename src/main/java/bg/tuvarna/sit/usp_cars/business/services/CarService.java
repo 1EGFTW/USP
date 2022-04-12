@@ -47,12 +47,9 @@ public class CarService {
     }
 
     public Car findCar(CarModel carModel){
-        Car car=new Car(carModel.getManufacturer(),carModel.getModel(),
-                carModel.getEngine(),carModel.getTransmission(), carModel.getDrive_type(), carModel.getVin(),
-                carModel.getPrice(), carModel.getDate_of_first_reg(),carModel.getMileage(), carModel.getType(),
-                carModel.getDiscount(), carModel.getOwner(), carModel.getPayment());
+        Car car=new Car(carModel.getVin());
         for(Car c: repository.getAll()){
-            if(c.equals(car)){ // ne raboti kakto trqbva
+            if(car.getVin().equals(c.getVin())){
                 return c;
             }
         }

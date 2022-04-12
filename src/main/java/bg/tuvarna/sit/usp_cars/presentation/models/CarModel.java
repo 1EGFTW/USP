@@ -41,6 +41,9 @@ public class CarModel {
         this.owner = owner;
         this.payment = payment;
     }
+    public CarModel(String vin){
+        this.vin=vin;
+    }
 
     public String getManufacturer() {
         return manufacturer;

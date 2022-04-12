@@ -38,3 +38,6 @@
 
 [JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.MechanicService  - Mechanic Pavel added!
 
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - CarService created!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.UserService  - User Alexander1 created!

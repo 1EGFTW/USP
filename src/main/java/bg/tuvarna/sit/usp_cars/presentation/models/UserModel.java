@@ -5,7 +5,7 @@ import java.util.Objects;
 public class UserModel {
     private String user_username;
     private String user_password;
-    private Boolean is_admin;
+    private Boolean is_admin=false;
 
     public UserModel() {
     }

@@ -8,17 +8,12 @@
 
 .centerPanes{
     -fx-background-color: #EBEBEB;
-}
+ }
 
-.scroll-pane {
+ .scroll-pane {
     -fx-background: #EBEBEB;
     -fx-border-color: #EBEBEB;
-}
-
-.scroll-pane:focused {
-    -fx-focus-color: transparent;
-    -fx-background-insets: -1.4, 0, 1, 2;
-}
+ }
 
 .confirmButtons{
      -fx-color: #9DA6AA;
@@ -73,7 +68,7 @@
  }
 
  .inputFields{
-     -fx-control-inner-background: #D3D7D9;
+     -fx-control-inner-background: ##D3D7D9;
      -fx-font-size: 16;
      -fx-text-fill: #343C45;
   }
@@ -99,20 +94,20 @@
  }
 
 .comboBox{
-    -fx-background-color: #D3D7D9;
+    -fx-background-color: #9DA6AA;
     -fx-font-weight: bold;
     -fx-font-size: 14;
     -fx-text-fill: #343C45;
 }
 
 .comboBox .list-cell{
-    -fx-background-color: #D3D7D9;
+    -fx-background-color: #9DA6AA;
     -fx-font-weight: bold;
     -fx-font-size: 14;
 }
 
 .comboBox .list-cell:hover{
-    -fx-background-color: #9DA6AA;
+    -fx-background-color: #D3D7D9;
     -fx-font-weight: bold;
     -fx-text-fill: #343C45;
 }
@@ -120,7 +115,6 @@
 .comboBox .list-cell:focused{
     -fx-faint-focus-color: transparent;
     -fx-focus-color: #9DA6AA;
-    -fx-text-fill: #343C45;
     -fx-font-weight: bold;
 }
 
@@ -167,7 +161,7 @@
       -fx-padding: 8 15 15 15;
       -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
       -fx-background-radius: 8;
-      -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #9DA6AA 0%, #343C45 100%), #9DA6AA, #F5F5F5, radial-gradient(center 50% 50%, radius 100%, #D3D7D9, #9DA6AA);
+      -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #9DA6AA 0%, #F5F5F5 100%), #343C45, #9DA6AA, radial-gradient(center 50% 50%, radius 100%, #D3D7D9, #9DA6AA);
       -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
       -fx-font-weight: bold;
       -fx-font-size: 1.1em;
@@ -175,90 +169,10 @@
 }
 
 .inputButton:hover{
-    -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #9DA6AA 0%, #343C45 100%), #9DA6AA, #F5F5F5, radial-gradient(center 80% 20%, radius 80%, #D3D7D9, #F5F5F5);
+    -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #9DA6AA 0%, #F5F5F5 100%), #343C45, #9DA6AA, radial-gradient(center 80% 20%, radius 80%, #D3D7D9, #F5F5F5);
 }
 
 .infoLabel{
     -fx-font-weight: bold;
     -fx-font-size: 14;
 }
-
-.table-view{
-    -fx-background-color: #D3D7D9;
- }
-
- .table-view .column-header-background .filler{
-    -fx-background-color: transparent;
- }
-
- .table-view .corner {
-     -fx-background-color: transparent;
- }
-
- .table-view .column-header-background{
-     -fx-background-color: #A8A6A3;
-     -fx-padding: 0 0 5px 0;
-     -fx-alignment: center;
- }
-
- .table-view .column-header-background .label{
-     -fx-font-weight:bold;
-     -fx-text-fill: #343C45;
-     -fx-font-size: 16;
- }
-
- .table-view .column-header {
-     -fx-background-color: transparent;
-
- }
-
- .table-view .table-cell{
-     -fx-border-color: transparent;
-     -fx-padding: 2 0 2 10px;
-     -fx-alignment: center;
-     -fx-font-size: 16;
- }
-
- .table-row-cell: odd{
-     -fx-background-color: #9DA6AA;
-     -fx-background-insets: 0, 0 0 1 0;
-     -fx-padding: 0.0em;
- }
-
- .table-row-cell: even{
-     -fx-background-color: #D3D7D9;
-     -fx-background-insets: 0, 0 0 1 0;
-     -fx-padding: 0.0em;
- }
-
- .table-row-cell: selected {
-     -fx-text-fill: #343C45;
-     -fx-background-color: #F5F5F5;
- }
-
- .table-cell{
-    -fx-text-fill: #343C45;
-    -fx-font-weight: bold;
- }
-
- .table-view .virtual-flow .scroll-bar:vertical,
- .table-view .virtual-flow .scroll-bar:vertical .track,
- .table-view .virtual-flow .scroll-bar:vertical .track-background,
- .table-view .virtual-flow .scroll-bar:horizontal,
- .table-view .virtual-flow .scroll-bar:horizontal .track,
- .table-view .virtual-flow .scroll-bar:horizontal .track-background {
-     -fx-background-color: transparent;
- }
-
- .table-view .virtual-flow .scroll-bar .increment-button,
- .table-view .virtual-flow .scroll-bar .decrement-button {
-     -fx-opacity: 0;
-     -fx-padding: 2;
- }
-
- .table-view .virtual-flow .scroll-bar:vertical .thumb{
-     -fx-background-color:  #343C45;
- }
- .table-view .virtual-flow .scroll-bar:horizontal .thumb {
-     -fx-background-color:  #343C45;
- }
