@@ -71,8 +71,6 @@ public class Mechanic implements Serializable {
 
     @Override
     public String toString() {
-        return "Mechanic{" +
-                "mechanic_name='" + mechanic_name + '\'' +
-                '}';
+        return "mechanic name: " + mechanic_name;
     }
 }

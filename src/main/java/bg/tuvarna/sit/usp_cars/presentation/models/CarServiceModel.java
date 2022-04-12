@@ -69,11 +69,7 @@ public class CarServiceModel {
 
     @Override
     public String toString() {
-        return "CarServiceModel{" +
-                "car=" + car +
-                ", service=" + service +
-                ", mechanic=" + mechanic +
-                ", price_service=" + price_service +
-                '}';
+        return "car" + car +
+                ", service=" + service;
     }
 }
