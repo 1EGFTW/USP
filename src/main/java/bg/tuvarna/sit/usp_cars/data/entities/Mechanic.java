@@ -22,7 +22,7 @@ public class Mechanic implements Serializable {
     private String mechanic_name;
 
     @OneToMany(mappedBy = "mechanic")
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<CarService> carServices;
 
     public Mechanic() {

@@ -23,7 +23,7 @@ public class Payment implements Serializable {
     private String payment_type;
 
     @OneToMany(mappedBy = "payment")
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @Cascade(org.hibernate.annotations.CascadeType.DETACH)
     private Set<Car> payments=new HashSet<>();
 
     public Payment() {

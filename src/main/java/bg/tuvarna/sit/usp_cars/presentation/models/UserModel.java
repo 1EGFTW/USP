@@ -5,7 +5,7 @@ import java.util.Objects;
 public class UserModel {
     private String user_username;
     private String user_password;
-    private Boolean is_admin;
+    private Boolean is_admin=false;
 
     public UserModel() {
     }
@@ -60,10 +60,6 @@ public class UserModel {
 
     @Override
     public String toString() {
-        return "UserModel{" +
-                "user_username='" + user_username + '\'' +
-                ", user_password='" + user_password + '\'' +
-                ", is_admin=" + is_admin +
-                '}';
+        return "Username: " + user_username;
     }
 }

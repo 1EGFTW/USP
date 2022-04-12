@@ -22,7 +22,7 @@ public class User implements Serializable {
     private String user_password;
 
     @Column(name = "is_admin")
-    private Boolean is_admin;
+    private Boolean is_admin=false;
 
     public User() {
     }

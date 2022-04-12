@@ -51,17 +51,17 @@ public class Car implements Serializable {
     private Double discount;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @Cascade(org.hibernate.annotations.CascadeType.DETACH)
     @JoinColumn(name = "id_owner")
     private Owner owner;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @Cascade(org.hibernate.annotations.CascadeType.DETACH)
     @JoinColumn(name = "id_payment")
     private Payment payment;
 
     @OneToMany(mappedBy = "car")
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<CarService> carServices;
 
     public Car() {
@@ -83,6 +83,9 @@ public class Car implements Serializable {
         this.discount = discount;
         this.owner = owner;
         this.payment = payment;
+    }
+    public Car(String vin){
+        this.vin=vin;
     }
 
     public int getId_car() {

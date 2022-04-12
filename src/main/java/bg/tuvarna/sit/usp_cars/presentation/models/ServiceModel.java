@@ -46,8 +46,7 @@ public class ServiceModel {
     @Override
     public String toString() {
         return "ServiceModel{" +
-                "service_name='" + service_name + '\'' +
-                ", service_type='" + service_type + '\'' +
-                '}';
+                "service name: " + service_name + '|' +
+                ", service type: " + service_type;
     }
 }

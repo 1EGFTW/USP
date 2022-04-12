@@ -41,6 +41,9 @@ public class CarModel {
         this.owner = owner;
         this.payment = payment;
     }
+    public CarModel(String vin){
+        this.vin=vin;
+    }
 
     public String getManufacturer() {
         return manufacturer;
@@ -161,20 +164,11 @@ public class CarModel {
 
     @Override
     public String toString() {
-        return "CarModel{" +
-                "manufacturer='" + manufacturer + '\'' +
-                ", model='" + model + '\'' +
-                ", engine='" + engine + '\'' +
-                ", transmission='" + transmission + '\'' +
-                ", drive_type='" + drive_type + '\'' +
-                ", vin='" + vin + '\'' +
-                ", price=" + price +
-                ", date_of_first_reg=" + date_of_first_reg +
-                ", mileage=" + mileage +
-                ", type='" + type + '\'' +
-                ", discount=" + discount +
-                ", owner=" + owner +
-                ", payment=" + payment +
-                '}';
+        return "Car: " +
+                manufacturer + '|' +
+                " " + model + '|' +
+                " " + vin + '|' +
+                ", price: " + price + '|' +
+                ", owner: " + owner;
     }
 }
