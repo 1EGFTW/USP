@@ -81,9 +81,6 @@ public class Service implements Serializable {
 
     @Override
     public String toString() {
-        return "Service{" +
-                "service_name='" + service_name + '\'' +
-                ", service_type='" + service_type + '\'' +
-                '}';
+        return "service name: " + service_name;
     }
 }

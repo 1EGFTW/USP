@@ -68,7 +68,7 @@
  }
 
  .inputFields{
-     -fx-control-inner-background: ##D3D7D9;
+     -fx-control-inner-background: #D3D7D9;
      -fx-font-size: 16;
      -fx-text-fill: #343C45;
   }

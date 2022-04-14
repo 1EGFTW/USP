@@ -85,9 +85,7 @@ public class Owner implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" +
-                "owner_name='" + owner_name + '\'' +
-                ", number_of_cars_bought=" + number_of_cars_bought +
-                '}';
+        return owner_name + " |" +
+                " cars owned=: " + number_of_cars_bought;
     }
 }

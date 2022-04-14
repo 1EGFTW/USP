@@ -19,13 +19,15 @@
             </Button>
             <Button layoutX="102.0" mnemonicParsing="false" onAction="#switchToAdd" prefHeight="86.0" prefWidth="150.0" styleClass="menuButton" text="Add" />
             <Button layoutX="252.0" layoutY="2.0" mnemonicParsing="false" onAction="#switchToCheck" prefHeight="86.0" prefWidth="150.0" styleClass="menuButton" text="Check" />
+            <Button layoutX="402.0" layoutY="1.0" mnemonicParsing="false" onAction="#switchToDelete" prefHeight="86.0" prefWidth="150.0" styleClass="menuButton" text="Delete" />
+            <Button layoutX="552.0" layoutY="2.0" mnemonicParsing="false" onAction="#switchToUpdate" prefHeight="86.0" prefWidth="150.0" styleClass="menuButton" text="Update" />
          </children>
         </Pane>
         <Pane fx:id="wrapperPane" layoutY="87.0" maxHeight="765.0" maxWidth="1024.0" minHeight="500.0" minWidth="373.0" prefHeight="680.0" prefWidth="1024.0" styleClass="rightField">
          <children>
             <Pane fx:id="addPane" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
                <children>
-                  <Button layoutX="203.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchAddPane" prefHeight="50.0" prefWidth="105.0" styleClass="inputButton" text="Button" />
+                  <Button layoutX="203.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchAddPane" prefHeight="50.0" prefWidth="105.0" styleClass="inputButton" text="Choose" />
                   <ComboBox fx:id="comboBoxChoices" layoutX="131.0" layoutY="248.0" prefHeight="50.0" prefWidth="250.0" styleClass="comboBox" />
                   <Label layoutX="63.0" layoutY="109.0" styleClass="infoTitle" text="Please choose from the dropdown menu,&#10; which of the options you want to add!" />
                </children></Pane>
@@ -153,10 +155,6 @@
                          </columns>
                      </TableView>
                  </children></Pane>
-            <Pane fx:id="welcomePane" prefHeight="680.0" prefWidth="1024.0" styleClass="centerPanes">
-               <children>
-                  <Label layoutX="378.0" layoutY="233.0" prefHeight="214.0" prefWidth="268.0" styleClass="mainTitle" text="Welcome to VAM AutoShop" />
-               </children></Pane>
              <Pane fx:id="checkServicePane" layoutY="-2.0" prefHeight="680.0" prefWidth="1024.0" styleClass="centerPanes">
                  <children>
                      <Label layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="113.0" styleClass="mainTitle" text="Services: " />
@@ -167,10 +165,80 @@
                          </columns>
                      </TableView>
                  </children></Pane>
+             <Pane fx:id="checkCarServicePane" layoutY="-2.0" prefHeight="680.0" prefWidth="1024.0" styleClass="centerPanes">
+                 <children>
+                     <Label layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="166.0" styleClass="mainTitle" text="Services per car: " />
+                     <TableView fx:id="carServiceTable" layoutY="49.0" prefHeight="633.0" prefWidth="1024.0">
+                         <columns>
+                             <TableColumn fx:id="tbCarServiceCar" prefWidth="255.5" text="Car:" />
+                             <TableColumn fx:id="tbCarServiceService" prefWidth="255.5" text="Service:" />
+                             <TableColumn fx:id="tbCarServiceMechanic" prefWidth="255.5" text="Mechanic:" />
+                             <TableColumn fx:id="tbCarServicePrice" prefWidth="255.5" text="Cost:" />
+                         </columns>
+                     </TableView>
+                 </children></Pane>
+             <Pane fx:id="deletePane" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
+                 <children>
+                     <Button layoutX="203.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchDeletePane" prefHeight="50.0" prefWidth="105.0" styleClass="inputButton" text="Choose" />
+                     <ComboBox fx:id="comboBoxDeleteChoices" layoutX="131.0" layoutY="248.0" prefHeight="50.0" prefWidth="250.0" styleClass="comboBox" />
+                     <Label layoutX="63.0" layoutY="109.0" styleClass="infoTitle" text="Please choose from the dropdown menu,&#10; which of the options you want to delete!" />
+                 </children></Pane>
+             <Pane fx:id="deleteMechanicPane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
+                 <children>
+                     <Button layoutX="197.0" layoutY="364.0" mnemonicParsing="false" onAction="#onDeleteMechanicButtonClick" styleClass="inputButton" text="Delete mechanic" />
+                     <ComboBox fx:id="cbDeleteMechanic" layoutX="43.0" layoutY="249.0" prefHeight="50.0" prefWidth="441.0" styleClass="comboBox" />
+                     <Label layoutX="73.0" layoutY="114.0" styleClass="infoTitle" text="Please choose the mechanic's name you &#10; want to delete:" />
+                 </children>
+             </Pane>
+             <Pane fx:id="deleteOwnerPane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
+                 <children>
+                     <Button layoutX="197.0" layoutY="364.0" mnemonicParsing="false" onAction="#onDeleteOwnerButtonClick" styleClass="inputButton" text="Delete owner" />
+                     <ComboBox fx:id="cbDeleteOwner" layoutX="43.0" layoutY="249.0" prefHeight="50.0" prefWidth="441.0" styleClass="comboBox" />
+                     <Label layoutX="73.0" layoutY="114.0" styleClass="infoTitle" text="Please choose the owner you &#10; want to delete:" />
+                 </children>
+             </Pane>
+             <Pane fx:id="deletePaymentPane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
+                 <children>
+                     <Button layoutX="197.0" layoutY="364.0" mnemonicParsing="false" onAction="#onDeletePaymentButtonClick" styleClass="inputButton" text="Delete" />
+                     <ComboBox fx:id="cbDeletePayment" layoutX="43.0" layoutY="249.0" prefHeight="50.0" prefWidth="441.0" styleClass="comboBox" />
+                     <Label layoutX="73.0" layoutY="114.0" styleClass="infoTitle" text="Please choose the payment method you &#10; want to delete:" />
+                 </children>
+             </Pane>
+             <Pane fx:id="deleteServicePane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
+                 <children>
+                     <Button layoutX="197.0" layoutY="364.0" mnemonicParsing="false" onAction="#onDeleteServiceButtonClick" styleClass="inputButton" text="Delete" />
+                     <ComboBox fx:id="cbDeleteService" layoutX="43.0" layoutY="249.0" prefHeight="50.0" prefWidth="441.0" styleClass="comboBox" />
+                     <Label layoutX="73.0" layoutY="114.0" styleClass="infoTitle" text="Please choose the service you &#10; want to delete:" />
+                 </children>
+             </Pane>
+             <Pane fx:id="deleteCarPane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
+                 <children>
+                     <Button layoutX="197.0" layoutY="364.0" mnemonicParsing="false" onAction="#onDeleteCarButtonClick" styleClass="inputButton" text="Delete" />
+                     <ComboBox fx:id="cbDeleteCar" layoutX="43.0" layoutY="249.0" prefHeight="50.0" prefWidth="441.0" styleClass="comboBox" />
+                     <Label layoutX="73.0" layoutY="114.0" styleClass="infoTitle" text="Please choose the car you &#10; want to delete:" />
+                 </children>
+             </Pane>
+             <Pane fx:id="deleteCarServicePane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
+                 <children>
+                     <Button layoutX="197.0" layoutY="364.0" mnemonicParsing="false" onAction="#onDeleteCarServiceButtonClick" styleClass="inputButton" text="Delete" />
+                     <ComboBox fx:id="cbDeleteCarService" layoutX="43.0" layoutY="249.0" prefHeight="50.0" prefWidth="441.0" styleClass="comboBox" />
+                     <Label layoutX="73.0" layoutY="114.0" styleClass="infoTitle" text="Please choose the Car Service you &#10; want to delete:" />
+                 </children>
+             </Pane>
+            <Pane fx:id="welcomePane" prefHeight="680.0" prefWidth="1024.0" styleClass="centerPanes">
+               <children>
+                  <Label layoutX="378.0" layoutY="233.0" prefHeight="214.0" prefWidth="268.0" styleClass="mainTitle" text="Welcome to VAM AutoShop" />
+               </children></Pane>
+            <Pane fx:id="updatePane" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
+                 <children>
+                     <Button layoutX="203.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchUpdatePane" prefHeight="50.0" prefWidth="105.0" styleClass="inputButton" text="Choose" />
+                     <ComboBox fx:id="comboBoxUpdateChoices" layoutX="131.0" layoutY="248.0" prefHeight="50.0" prefWidth="250.0" styleClass="comboBox" />
+                     <Label layoutX="63.0" layoutY="109.0" styleClass="infoTitle" text="Please choose from the dropdown menu,&#10; which of the options you want to update!" />
+                 </children></Pane>
              <Pane fx:id="checkCarPane" layoutY="-2.0" prefHeight="680.0" prefWidth="1024.0" styleClass="centerPanes">
                  <children>
                      <Label layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="113.0" styleClass="mainTitle" text="Car: " />
-                     <TableView fx:id="carTable" layoutY="49.0" prefHeight="633.0" prefWidth="1024.0">
+                     <TableView fx:id="carTable" layoutY="49.0" prefHeight="590.0" prefWidth="1024.0">
                          <columns>
                              <TableColumn fx:id="carManufacturer" prefWidth="150.0" text="Manufacturer:" />
                              <TableColumn fx:id="carModel" prefWidth="150.0" text="Model:" />
@@ -188,18 +256,37 @@
                          </columns>
                      </TableView>
                  </children></Pane>
-             <Pane fx:id="checkCarServicePane" layoutY="-2.0" prefHeight="680.0" prefWidth="1024.0" styleClass="centerPanes">
+             <Pane fx:id="updateCarPane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
                  <children>
-                     <Label layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="166.0" styleClass="mainTitle" text="Services per car: " />
-                     <TableView fx:id="carServiceTable" layoutY="49.0" prefHeight="633.0" prefWidth="1024.0">
-                         <columns>
-                             <TableColumn fx:id="carServiceCar" prefWidth="255.5" text="Car:" />
-                             <TableColumn fx:id="carServiceService" prefWidth="255.5" text="Service:" />
-                             <TableColumn fx:id="carServiceMechanic" prefWidth="255.5" text="Mechanic:" />
-                             <TableColumn fx:id="carServicePrice" prefWidth="255.5" text="Cost:" />
-                         </columns>
-                     </TableView>
-                 </children></Pane>
+                     <Button layoutX="226.0" layoutY="579.0" mnemonicParsing="false" onAction="#onUpdateCarButtonClick" styleClass="inputButton" text="Update" />
+                     <ComboBox fx:id="cbUpdateCar" layoutX="43.0" layoutY="249.0" prefHeight="50.0" prefWidth="441.0" styleClass="comboBox" />
+                     <Label layoutX="133.0" layoutY="110.0" styleClass="infoTitle" text="Please choose the car you &#10; want to update:" />
+                        <Label layoutX="166.0" layoutY="340.0" styleClass="infoLabel" text="Enter new VIN: " />
+                        <TextField fx:id="tfNewVin" layoutX="165.0" layoutY="360.0" prefHeight="42.0" prefWidth="197.0" />
+                        <Label layoutX="166.0" layoutY="422.0" styleClass="infoLabel" text="Enter new Owner: " />
+                        <ComboBox fx:id="cbNewOwner" layoutX="165.0" layoutY="442.0" prefHeight="42.0" prefWidth="197.0" styleClass="comboBox" />
+                        <Label layoutX="165.0" layoutY="497.0" styleClass="infoLabel" text="Enter new mileage: " />
+                        <TextField fx:id="tfNewMileage" layoutX="165.0" layoutY="517.0" prefHeight="42.0" prefWidth="197.0" />
+                 </children>
+             </Pane>
+             <Pane fx:id="updateCarServicePane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
+                 <children>
+                     <Button layoutX="226.0" layoutY="579.0" mnemonicParsing="false" onAction="#onUpdateCarServiceButtonClick" styleClass="inputButton" text="Update" />
+                     <ComboBox fx:id="cbUpdateCarService" layoutX="43.0" layoutY="249.0" prefHeight="50.0" prefWidth="441.0" styleClass="comboBox" />
+                     <Label layoutX="103.0" layoutY="110.0" styleClass="infoTitle" text="Please choose the Car Service you &#10; want to update:" />
+                     <Label layoutX="166.0" layoutY="340.0" styleClass="infoLabel" text="Enter new price of service: " />
+                     <TextField fx:id="tfNewCarServicePrice" layoutX="165.0" layoutY="360.0" prefHeight="42.0" prefWidth="197.0" />
+                 </children>
+             </Pane>
+             <Pane fx:id="updateOwnerPane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
+                 <children>
+                     <Button layoutX="226.0" layoutY="579.0" mnemonicParsing="false" onAction="#onUpdateOwnerButtonClick" styleClass="inputButton" text="Update" />
+                     <ComboBox fx:id="cbUpdateOwner" layoutX="43.0" layoutY="249.0" prefHeight="50.0" prefWidth="441.0" styleClass="comboBox" />
+                     <Label layoutX="133.0" layoutY="110.0" styleClass="infoTitle" text="Please choose the owner you &#10; want to update:" />
+                     <Label layoutX="166.0" layoutY="340.0" styleClass="infoLabel" text="Enter new number of owned cars: " />
+                     <TextField fx:id="tfNewNumberOfOwnedCars" layoutX="165.0" layoutY="360.0" prefHeight="42.0" prefWidth="197.0" />
+                 </children>
+             </Pane>
          </children>
         </Pane>
     </children>
