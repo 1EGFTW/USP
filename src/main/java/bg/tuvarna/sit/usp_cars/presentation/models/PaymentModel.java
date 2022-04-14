@@ -35,8 +35,6 @@ public class PaymentModel {
 
     @Override
     public String toString() {
-        return "PaymentModel{" +
-                "payment_type='" + payment_type + '\'' +
-                '}';
+        return payment_type;
     }
 }

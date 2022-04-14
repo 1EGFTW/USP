@@ -41,3 +41,22 @@
 [JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - CarService created!
 
 [JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.UserService  - User Alexander1 created!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.MechanicService  - Mechanic Pavel deleted successfully!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.PaymentService  - Payment type Cash added!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.ServiceService  - Service Change bulbs added!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarService  - Car added successfully!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - CarService created!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarService  - Car updated successfully!
+[JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - No such service!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.OwnerService  - Owner Misho added!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.MechanicService  - Mechanic Gosho added!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.PaymentService  - Payment type Card added!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.OwnerService  - Owner Alexander added!
+

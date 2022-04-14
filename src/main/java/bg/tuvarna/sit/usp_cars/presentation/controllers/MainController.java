@@ -62,11 +62,37 @@ public class MainController implements Initializable {
     private Pane checkCarPane;
     @FXML
     private Pane checkCarServicePane;
+    @FXML
+    private Pane deletePane;
+    @FXML
+    private Pane deleteMechanicPane;
+    @FXML
+    private Pane deleteOwnerPane;
+    @FXML
+    private Pane deletePaymentPane;
+    @FXML
+    private Pane deleteServicePane;
+    @FXML
+    private Pane deleteCarPane;
+    @FXML
+    private Pane deleteCarServicePane;
+    @FXML
+    private Pane updatePane;
+    @FXML
+    private Pane updateCarPane;
+    @FXML
+    private Pane updateOwnerPane;
+    @FXML
+    private Pane updateCarServicePane;
 
     @FXML
     private ComboBox<String> comboBoxChoices;
     @FXML
     private ComboBox<String> comboBoxCheckChoices;
+    @FXML
+    private ComboBox<String> comboBoxDeleteChoices;
+    @FXML
+    private ComboBox<String> comboBoxUpdateChoices;
     @FXML
     private TextField tfOwnerName;
     @FXML
@@ -171,13 +197,40 @@ public class MainController implements Initializable {
     private TableColumn<CarServiceModel, String> tbCarServiceMechanic = new TableColumn<>();
     @FXML
     private TableColumn<CarServiceModel, Double> tbCarServicePrice = new TableColumn<>();
+    @FXML
+    private ComboBox<MechanicModel> cbDeleteMechanic;
+    @FXML
+    private ComboBox<OwnerModel> cbDeleteOwner;
+    @FXML
+    private ComboBox<PaymentModel> cbDeletePayment;
+    @FXML
+    private ComboBox<ServiceModel> cbDeleteService;
+    @FXML
+    private ComboBox<CarModel> cbDeleteCar;
+    @FXML
+    private ComboBox<CarServiceModel> cbDeleteCarService;
+    @FXML
+    private ComboBox<CarModel> cbUpdateCar;
+    @FXML
+    private TextField tfNewVin;
+    @FXML
+    private ComboBox<OwnerModel> cbNewOwner;
+    @FXML
+    private TextField tfNewMileage;
+    @FXML
+    private ComboBox<OwnerModel> cbUpdateOwner;
+    @FXML
+    private TextField tfNewNumberOfOwnedCars;
+    @FXML
+    private ComboBox<CarServiceModel> cbUpdateCarService;
+    @FXML
+    private TextField tfNewCarServicePrice;
 
     public MainController(Stage stage){
         s=stage;
     }
 
     public void onAddOwnerButtonClick(ActionEvent actionEvent){
-        //code on Add owner button click
         OwnerModel ownerModel=new OwnerModel(tfOwnerName.getText(),Integer.parseInt(tfCarsOwned.getText()));
         OwnerService ownerService=OwnerService.getInstance();
         if(ownerService.addOwner(ownerModel)){
@@ -188,7 +241,6 @@ public class MainController implements Initializable {
     }
 
     public void onAddPaymentButtonClick(ActionEvent actionEvent){
-        //code on Add payment method button click
         PaymentModel paymentModel=new PaymentModel(tfPaymentMethod.getText());
         PaymentService paymentService=PaymentService.getInstance();
         if(paymentService.addPayment(paymentModel)){
@@ -199,7 +251,6 @@ public class MainController implements Initializable {
     }
 
     public void onAddMechanicButtonClick(ActionEvent actionEvent){
-        //code on Add car method button click
         MechanicModel mechanicModel=new MechanicModel(tfMechanicName.getText());
         MechanicService mechanicService=MechanicService.getInstance();
         if(mechanicService.addMechanic(mechanicModel))
@@ -211,7 +262,6 @@ public class MainController implements Initializable {
     }
 
     public void onAddServiceButtonClick(ActionEvent actionEvent){
-        //code on Add service method button click
         ServiceModel serviceModel=new ServiceModel(tfServiceName.getText(),tfServiceType.getText());
         ServiceService service=ServiceService.getInstance();
         if(service.addService(serviceModel)){
@@ -222,7 +272,6 @@ public class MainController implements Initializable {
     }
 
     public void onAddCarButtonClick(ActionEvent actionEvent){
-        //code on Add car method button click
         OwnerService ownerService=OwnerService.getInstance();
         PaymentService paymentService=PaymentService.getInstance();
         CarService carService=CarService.getInstance();
@@ -242,11 +291,9 @@ public class MainController implements Initializable {
         }else {
             showAlert(Alert.AlertType.WARNING,"Car not added!");
         }
-
     }
 
     public void onAddCarServiceButtonClick(ActionEvent actionEvent){
-        //code on Add carService method button click
         CarService carService=CarService.getInstance();
         MechanicService mechanicService=MechanicService.getInstance();
         ServiceService serviceService=ServiceService.getInstance();
@@ -260,8 +307,114 @@ public class MainController implements Initializable {
         }else {
             showAlert(Alert.AlertType.WARNING,"CarService not added!");
         }
+    }
 
+    public void onDeleteMechanicButtonClick(ActionEvent actionEvent){
+        MechanicService mechanicService=MechanicService.getInstance();
+        MechanicModel mechanic=cbDeleteMechanic.getValue();
+        if(mechanicService.deleteMechanic(mechanic))
+        {
+            showAlert(Alert.AlertType.CONFIRMATION,"Successfully deleted mechanic!");
+        }else{
+            showAlert(Alert.AlertType.ERROR,"Couldn't delete mechanic!");
+        }
+        switchDoublePane(deletePane, logoPane);
+    }
 
+    public void onDeleteOwnerButtonClick(ActionEvent actionEvent){
+        OwnerService ownerService=OwnerService.getInstance();
+        OwnerModel owners=cbDeleteOwner.getValue();
+        if(ownerService.deleteOwner(owners))
+        {
+            showAlert(Alert.AlertType.CONFIRMATION,"Successfully deleted owner!");
+        }else{
+            showAlert(Alert.AlertType.ERROR,"Couldn't delete owner!");
+        }
+        switchDoublePane(deletePane, logoPane);
+    }
+
+    public void onDeletePaymentButtonClick(ActionEvent actionEvent){
+        PaymentService paymentService=PaymentService.getInstance();
+        PaymentModel payments=cbDeletePayment.getValue();
+        if(paymentService.deletePayment(payments))
+        {
+            showAlert(Alert.AlertType.CONFIRMATION,"Successfully deleted payment method!");
+        }else{
+            showAlert(Alert.AlertType.ERROR,"Couldn't delete payment method!");
+        }
+        switchDoublePane(deletePane, logoPane);
+    }
+
+    public void onDeleteServiceButtonClick(ActionEvent actionEvent){
+        ServiceService serviceService=ServiceService.getInstance();
+        ServiceModel services=cbDeleteService.getValue();
+        if(serviceService.deleteService(services))
+        {
+            showAlert(Alert.AlertType.CONFIRMATION,"Successfully deleted service!");
+        }else{
+            showAlert(Alert.AlertType.ERROR,"Couldn't delete service!");
+        }
+        switchDoublePane(deletePane, logoPane);
+    }
+
+    public void onDeleteCarButtonClick(ActionEvent actionEvent){
+        CarService carService=CarService.getInstance();
+        CarModel cars=cbDeleteCar.getValue();
+        if(carService.deleteCar(cars))
+        {
+            showAlert(Alert.AlertType.CONFIRMATION,"Successfully deleted car!");
+        }else{
+            showAlert(Alert.AlertType.ERROR,"Couldn't delete car!");
+        }
+        switchDoublePane(deletePane, logoPane);
+    }
+
+    public void onDeleteCarServiceButtonClick(ActionEvent actionEvent){
+        CarServiceService carServiceService=CarServiceService.getInstance();
+        CarServiceModel carServices=cbDeleteCarService.getValue();
+        if(carServiceService.deleteCarService(carServices))
+        {
+            showAlert(Alert.AlertType.CONFIRMATION,"Successfully deleted car service!");
+        }else{
+            showAlert(Alert.AlertType.ERROR,"Couldn't delete car service!");
+        }
+        switchDoublePane(deletePane, logoPane);
+    }
+
+    public void onUpdateOwnerButtonClick(ActionEvent actionEvent){
+        OwnerService ownerService=OwnerService.getInstance();
+        OwnerModel owner=cbUpdateOwner.getValue();
+        if(ownerService.updateOwner(owner))
+        {
+            showAlert(Alert.AlertType.CONFIRMATION,"Successfully updated owner!");
+        }else{
+            showAlert(Alert.AlertType.ERROR,"Couldn't update owner!");
+        }
+        switchDoublePane(updatePane, logoPane);
+    }
+
+    public void onUpdateCarButtonClick(ActionEvent actionEvent){
+        CarService carService=CarService.getInstance();
+        CarModel car=cbUpdateCar.getValue();
+        if(carService.updateCar(car))
+        {
+            showAlert(Alert.AlertType.CONFIRMATION,"Successfully updated car!");
+        }else{
+            showAlert(Alert.AlertType.ERROR,"Couldn't update car!");
+        }
+        switchDoublePane(updatePane, logoPane);
+    }
+
+    public void onUpdateCarServiceButtonClick(ActionEvent actionEvent){
+        CarServiceService carServiceService=CarServiceService.getInstance();
+        CarServiceModel carService=cbUpdateCarService.getValue();
+        if(carServiceService.updateCarService(carService))
+        {
+            showAlert(Alert.AlertType.CONFIRMATION,"Successfully updated car's service!");
+        }else{
+            showAlert(Alert.AlertType.ERROR,"Couldn't update car's service!");
+        }
+        switchDoublePane(updatePane, logoPane);
     }
 
 
@@ -274,6 +427,7 @@ public class MainController implements Initializable {
                 ObservableList<PaymentModel> payments=PaymentService.getInstance().getAllPayments();
                 tfPaymentCombo.setItems(payments);
                 switchDoublePane(addCarPane, addPane);
+                comboBoxChoices.setValue(null);
                 break;
             case "CarService":
                 ObservableList<CarModel> cars=CarService.getInstance().getAllCars();
@@ -283,29 +437,35 @@ public class MainController implements Initializable {
                 ObservableList<MechanicModel> mechanics=MechanicService.getInstance().getAllMechanics();
                 tfMechanicChoice.setItems(mechanics);
                 switchDoublePane(addCarServicePane, addPane);
+                comboBoxChoices.setValue(null);
                 break;
             case "Mechanic":
                 switchDoublePane(addMechanicPane, addPane);
+                comboBoxChoices.setValue(null);
                 break;
             case "Owner":
                 switchDoublePane(addOwnerPane, addPane);
+                comboBoxChoices.setValue(null);
                 break;
             case "Payment method":
                 switchDoublePane(addPaymentPane, addPane);
+                comboBoxChoices.setValue(null);
                 break;
             case "Service":
                 switchDoublePane(addServicePane, addPane);
+                comboBoxChoices.setValue(null);
                 break;
             case "null": showAlert(Alert.AlertType.WARNING, "Please choose an option from the combo box!"); //not working
 
         }
     }
 
+    @FXML
     public void switchCheckPane(ActionEvent actionEvent){
         switch (comboBoxCheckChoices.getValue()){
             case "Car":
                 CarService carService=CarService.getInstance();
-                ObservableList<CarModel> carListViewModels=carService.getAllCars();
+                ObservableList<CarModel> carModels=carService.getAllCars();
                 carManufacturer.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
                 carModel.setCellValueFactory(new PropertyValueFactory<>("model"));
                 carEngine.setCellValueFactory(new PropertyValueFactory<>("engine"));
@@ -329,7 +489,7 @@ public class MainController implements Initializable {
                         return new ReadOnlyObjectWrapper(o.getValue().getPayment().getPayment_type());
                     }
                 });
-                carTable.setItems(carListViewModels);
+                carTable.setItems(carModels);
                 switchDoublePane(checkCarPane, checkPane);
                 break;
             case "CarService":
@@ -354,6 +514,7 @@ public class MainController implements Initializable {
                     }
                 });
                 tbCarServicePrice.setCellValueFactory(new PropertyValueFactory<>("price_service"));
+                carServiceTable.setItems(carServiceModels);
                 switchDoublePane(checkCarServicePane, checkPane);
                 break;
             case "Mechanic":
@@ -386,7 +547,81 @@ public class MainController implements Initializable {
                 serviceTable.setItems(serviceListViewModels);
                 switchDoublePane(checkServicePane, checkPane);
                 break;
-            case "null": showAlert(Alert.AlertType.WARNING, "Please choose an option from the combo box!"); //not working
+            default: showAlert(Alert.AlertType.WARNING, "Please choose an option from the combo box!"); //not working
+
+        }
+    }
+
+    @FXML
+    public void switchDeletePane(ActionEvent actionEvent){
+        switch (comboBoxDeleteChoices.getValue()){
+            case "Car":
+                ObservableList<CarModel> cars=CarService.getInstance().getAllCars();
+                cbDeleteCar.setItems(cars);
+                switchDoublePane(deleteCarPane, deletePane);
+                comboBoxDeleteChoices.setValue(null);
+                break;
+            case "CarService":
+                ObservableList<CarServiceModel> carServices=CarServiceService.getInstance().getAllCarServices();
+                cbDeleteCarService.setItems(carServices);
+                switchDoublePane(deleteCarServicePane, deletePane);
+                comboBoxDeleteChoices.setValue(null);
+                break;
+            case "Mechanic":
+                ObservableList<MechanicModel> mechanics=MechanicService.getInstance().getAllMechanics();
+                cbDeleteMechanic.setItems(mechanics);
+                switchDoublePane(deleteMechanicPane, deletePane);
+                comboBoxDeleteChoices.setValue(null);
+                break;
+            case "Owner":
+                ObservableList<OwnerModel> owners=OwnerService.getInstance().getAllOwners();
+                cbDeleteOwner.setItems(owners);
+                switchDoublePane(deleteOwnerPane, deletePane);
+                comboBoxDeleteChoices.setValue(null);
+                break;
+            case "Payment method":
+                ObservableList<PaymentModel> payments=PaymentService.getInstance().getAllPayments();
+                cbDeletePayment.setItems(payments);
+                switchDoublePane(deletePaymentPane, deletePane);
+                comboBoxDeleteChoices.setValue(null);
+                break;
+            case "Service":
+                ObservableList<ServiceModel> services=ServiceService.getInstance().getAllServices();
+                cbDeleteService.setItems(services);
+                switchDoublePane(deleteServicePane, deletePane);
+                comboBoxDeleteChoices.setValue(null);
+                break;
+            default: showAlert(Alert.AlertType.WARNING, "Please choose an option from the combo box!"); //not working
+
+        }
+    }
+
+    @FXML
+    public void switchUpdatePane(ActionEvent actionEvent){
+        OwnerService ownerService=OwnerService.getInstance();
+        ObservableList<OwnerModel> owners=ownerService.getAllOwners();
+        switch (comboBoxUpdateChoices.getValue()){
+            case "Car":
+                CarService carService=CarService.getInstance();
+                ObservableList<CarModel> cars=carService.getAllCars();
+                cbUpdateCar.setItems(cars);
+                cbNewOwner.setItems(owners);
+                switchDoublePane(updateCarPane, updatePane);
+                comboBoxUpdateChoices.setValue(null);
+                break;
+            case "CarService":
+                CarServiceService carServiceService=CarServiceService.getInstance();
+                ObservableList<CarServiceModel> carServices=carServiceService.getAllCarServices();
+                cbUpdateCarService.setItems(carServices);
+                switchDoublePane(updateCarServicePane, updatePane);
+                comboBoxUpdateChoices.setValue(null);
+                break;
+            case "Owner":
+                cbUpdateOwner.setItems(owners);
+                switchDoublePane(updateOwnerPane, updatePane);
+                comboBoxUpdateChoices.setValue(null);
+                break;
+            default: showAlert(Alert.AlertType.WARNING, "Please choose an option from the combo box!"); //not working
 
         }
     }
@@ -399,6 +634,16 @@ public class MainController implements Initializable {
     @FXML
     public void switchToCheck(ActionEvent actionEvent){
         switchDoublePane(checkPane, logoPane);
+    }
+
+    @FXML
+    public void switchToDelete(ActionEvent actionEvent){
+        switchDoublePane(deletePane, logoPane);
+    }
+
+    @FXML
+    public void switchToUpdate(ActionEvent actionEvent){
+        switchDoublePane(updatePane, logoPane);
     }
 
     public void switchDoublePane(Node paneName, Node frontPane){
@@ -429,25 +674,35 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillComboBox();
+        fillUpdateComboBox();
     }
 
     private void fillComboBox() {
         List<String> choices = new ArrayList<>();
         choices.add("Car");
         choices.add("CarService");
-        choices.add("Mechanic");
         choices.add("Owner");
+        choices.add("Mechanic");
         choices.add("Payment method");
         choices.add("Service");
         comboBoxChoices.setItems(FXCollections.observableList(choices));
         comboBoxCheckChoices.setItems(FXCollections.observableList(choices));
+        comboBoxDeleteChoices.setItems(FXCollections.observableList(choices));
+    }
+
+    private void fillUpdateComboBox(){
+        List<String> choices = new ArrayList<>();
+        choices.add("Car");
+        choices.add("CarService");
+        choices.add("Owner");
+        comboBoxUpdateChoices.setItems(FXCollections.observableList(choices));
     }
 
     public void showAlert(Alert.AlertType type, String info){
         Alert alert=new Alert(type, info, ButtonType.OK);
-        /*DialogPane dialogPane = alert.getDialogPane();
+        DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add("Alerts.css");
-        dialogPane.getStyleClass().add("Alert");*/
+        dialogPane.getStyleClass().add("Alert");
         alert.show();
     }
 }

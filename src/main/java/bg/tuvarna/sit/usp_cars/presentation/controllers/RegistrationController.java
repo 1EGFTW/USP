@@ -103,9 +103,9 @@ public class RegistrationController {
 
     public void infoAlert(String info){
         Alert alert=new Alert(Alert.AlertType.INFORMATION,info,ButtonType.OK);
-        /*DialogPane dialogPane = alert.getDialogPane();
+        DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add("Alerts.css");
-        dialogPane.getStyleClass().add("Alert");*/
+        dialogPane.getStyleClass().add("Alert");
         alert.show();
     }
 
