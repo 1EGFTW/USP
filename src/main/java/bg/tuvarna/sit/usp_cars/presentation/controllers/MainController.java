@@ -212,7 +212,7 @@ public class MainController implements Initializable {
     @FXML
     private ComboBox<CarModel> cbUpdateCar;
     @FXML
-    private TextField tfNewVin;
+    private TextField tfNewPrice;
     @FXML
     private ComboBox<OwnerModel> cbNewOwner;
     @FXML
@@ -397,16 +397,11 @@ public class MainController implements Initializable {
 
     public void onUpdateCarButtonClick(ActionEvent actionEvent){
         CarService carService=CarService.getInstance();
-        OwnerService ownerService=OwnerService.getInstance();
         CarModel car=cbUpdateCar.getValue();
-        String tempVIN = tfNewVin.getText();
+        Double newPrice=Double.parseDouble(tfNewPrice.getText());
         OwnerModel tempOwnerModel = cbNewOwner.getValue();
-        Owner tempOwner = ownerService.findOwner(tempOwnerModel);
         int tempMileage = Integer.parseInt(tfNewMileage.getText());
-        car.setVin(tempVIN);
-        car.setOwner(tempOwner);
-        car.setMileage(tempMileage);
-        if(carService.updateCar(car))
+        if(carService.updateCar(car,tempOwnerModel,newPrice,tempMileage))
         {
             showAlert(Alert.AlertType.CONFIRMATION,"Successfully updated car!");
         }else{

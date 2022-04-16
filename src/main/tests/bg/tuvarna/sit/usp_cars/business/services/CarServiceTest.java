@@ -7,6 +7,7 @@ import bg.tuvarna.sit.usp_cars.data.repositories.CarRepository;
 import bg.tuvarna.sit.usp_cars.data.repositories.OwnerRepository;
 import bg.tuvarna.sit.usp_cars.data.repositories.PaymentRepository;
 import bg.tuvarna.sit.usp_cars.presentation.models.CarModel;
+import bg.tuvarna.sit.usp_cars.presentation.models.OwnerModel;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,7 @@ class CarServiceTest {
     private Car car;
     private OwnerRepository ownerRepository;
     private PaymentRepository paymentRepository;
-
+    private  OwnerModel ownerModel;
     @BeforeEach
     void setUp() {
         LocalDate ld = LocalDate.now();
@@ -32,6 +33,7 @@ class CarServiceTest {
         c.set(ld.getYear(), ld.getMonthValue() - 1, ld.getDayOfMonth());
         Date date = c.getTime();
         Owner owner=new Owner("1",0);
+        ownerModel=new OwnerModel("1",0);
         Payment payment=new Payment("1");
         car=new Car("MB","1","1","1","1","1",1.0,date,
                 0,"1",1.0,owner,payment);
@@ -79,7 +81,7 @@ class CarServiceTest {
 
     @Test
     void updateCar() {
-        assertFalse(carService.updateCar(carModel));
+        assertFalse(carService.updateCar(carModel,ownerModel,0.0,0));
     }
 
     @Test

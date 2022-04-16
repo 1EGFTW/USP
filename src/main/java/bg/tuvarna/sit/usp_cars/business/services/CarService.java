@@ -86,27 +86,28 @@ public class CarService {
         }
         return null;
     }
-    public boolean updateCar(CarModel carModel){
+    public boolean updateCar(CarModel carModel,OwnerModel ownerModel,Double newPrice,int mileage){
         if(findCarByVin(carModel.getVin())==null){
             log.error("No such car!");
             return false;
         }
         try{
+            OwnerService ownerService=OwnerService.getInstance();
             Car car=findCarByVin(carModel.getVin());
-            car.setModel(carModel.getModel());
-            car.setManufacturer(carModel.getManufacturer());
-            car.setDiscount(carModel.getDiscount());
-            car.setDate_of_first_reg(carModel.getDate_of_first_reg());
-            car.setDrive_type(carModel.getDrive_type());
-            car.setEngine(carModel.getEngine());
-            car.setTransmission(carModel.getTransmission());
-            car.setMileage(carModel.getMileage());
-            car.setOwner(carModel.getOwner());
-            car.setPayment(carModel.getPayment());
-            car.setPrice(carModel.getPrice());
-            car.setType(carModel.getType());
+            if(ownerService.findOwner(ownerModel).equals(car.getOwner())){
+                car.getOwner().setNumber_of_cars_bought(car.getOwner().getNumber_of_cars_bought()+1);
+            }else{
+                car.getOwner().setNumber_of_cars_bought(car.getOwner().getNumber_of_cars_bought()-1);
+                car.setOwner(ownerService.findOwner(ownerModel));
+                car.getOwner().setNumber_of_cars_bought(car.getOwner().getNumber_of_cars_bought()+1);
+            }
+            car.setMileage(mileage);
+            car.setPrice(newPrice);
+            OwnerRepository ownerRepository=OwnerRepository.getInstance();
+            ownerRepository.update(car.getOwner());
             repository.update(car);
             log.info("Car updated successfully!");
+            log.info("Owner's cars updated successfully!");
             return true;
         }catch(Exception e){
             log.error("Error updating car!");
@@ -121,6 +122,9 @@ public class CarService {
         }
         try{
             Car car=findCarByVin(carModel.getVin());
+            car.getOwner().setNumber_of_cars_bought(car.getOwner().getNumber_of_cars_bought()-1);
+            OwnerRepository ownerRepository=OwnerRepository.getInstance();
+            ownerRepository.update(car.getOwner());
             repository.delete(car);
             log.info("Car deleted successfully!");
             return true;
