@@ -60,3 +60,8 @@
 
 [JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.OwnerService  - Owner Alexander added!
 
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.OwnerService  - Successfully updated owner Vladimir!
+[JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.CarService  - No such car!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarService  - Car updated successfully!
+[JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - No such service!
+[JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - No such service!
