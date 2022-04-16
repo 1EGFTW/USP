@@ -25,11 +25,11 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
 
         PropertyConfigurator.configure(HelloApplication.class.getResource(Constants.Configurations.LOG4J_PROPERTIES));
-        URL path = getClass().getResource(Constants.View.MAIN_VIEW);
+        URL path = getClass().getResource(Constants.View.LOGIN_VIEW);
 
         if (path != null){
             FXMLLoader fxmlLoader=new FXMLLoader(path);
-            fxmlLoader.setController(new MainController(stage));
+            fxmlLoader.setController(new LoginController(stage));
             Parent root =fxmlLoader.load();
             Scene scene = new Scene(root);
             scene.setFill(Color.TRANSPARENT);

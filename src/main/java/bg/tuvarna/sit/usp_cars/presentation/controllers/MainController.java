@@ -384,6 +384,8 @@ public class MainController implements Initializable {
     public void onUpdateOwnerButtonClick(ActionEvent actionEvent){
         OwnerService ownerService=OwnerService.getInstance();
         OwnerModel owner=cbUpdateOwner.getValue();
+        int tempNumber = Integer.parseInt(tfNewNumberOfOwnedCars.getText());
+        owner.setNumber_of_cars_bought(tempNumber);
         if(ownerService.updateOwner(owner))
         {
             showAlert(Alert.AlertType.CONFIRMATION,"Successfully updated owner!");
@@ -395,7 +397,15 @@ public class MainController implements Initializable {
 
     public void onUpdateCarButtonClick(ActionEvent actionEvent){
         CarService carService=CarService.getInstance();
+        OwnerService ownerService=OwnerService.getInstance();
         CarModel car=cbUpdateCar.getValue();
+        String tempVIN = tfNewVin.getText();
+        OwnerModel tempOwnerModel = cbNewOwner.getValue();
+        Owner tempOwner = ownerService.findOwner(tempOwnerModel);
+        int tempMileage = Integer.parseInt(tfNewMileage.getText());
+        car.setVin(tempVIN);
+        car.setOwner(tempOwner);
+        car.setMileage(tempMileage);
         if(carService.updateCar(car))
         {
             showAlert(Alert.AlertType.CONFIRMATION,"Successfully updated car!");
@@ -408,6 +418,8 @@ public class MainController implements Initializable {
     public void onUpdateCarServiceButtonClick(ActionEvent actionEvent){
         CarServiceService carServiceService=CarServiceService.getInstance();
         CarServiceModel carService=cbUpdateCarService.getValue();
+        Double tempPrice = Double.parseDouble(tfNewCarServicePrice.getText());
+        carService.setPrice_service(tempPrice);
         if(carServiceService.updateCarService(carService))
         {
             showAlert(Alert.AlertType.CONFIRMATION,"Successfully updated car's service!");

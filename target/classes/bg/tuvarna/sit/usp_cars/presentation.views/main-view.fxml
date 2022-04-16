@@ -225,10 +225,6 @@
                      <Label layoutX="73.0" layoutY="114.0" styleClass="infoTitle" text="Please choose the Car Service you &#10; want to delete:" />
                  </children>
              </Pane>
-            <Pane fx:id="welcomePane" prefHeight="680.0" prefWidth="1024.0" styleClass="centerPanes">
-               <children>
-                  <Label layoutX="378.0" layoutY="233.0" prefHeight="214.0" prefWidth="268.0" styleClass="mainTitle" text="Welcome to VAM AutoShop" />
-               </children></Pane>
             <Pane fx:id="updatePane" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
                  <children>
                      <Button layoutX="203.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchUpdatePane" prefHeight="50.0" prefWidth="105.0" styleClass="inputButton" text="Choose" />
@@ -256,6 +252,15 @@
                          </columns>
                      </TableView>
                  </children></Pane>
+             <Pane fx:id="updateOwnerPane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
+                 <children>
+                     <Button layoutX="226.0" layoutY="579.0" mnemonicParsing="false" onAction="#onUpdateOwnerButtonClick" styleClass="inputButton" text="Update" />
+                     <ComboBox fx:id="cbUpdateOwner" layoutX="43.0" layoutY="249.0" prefHeight="50.0" prefWidth="441.0" styleClass="comboBox" />
+                     <Label layoutX="133.0" layoutY="110.0" styleClass="infoTitle" text="Please choose the owner you &#10; want to update:" />
+                     <Label layoutX="166.0" layoutY="340.0" styleClass="infoLabel" text="Enter new number of owned cars: " />
+                     <TextField fx:id="tfNewNumberOfOwnedCars" layoutX="165.0" layoutY="360.0" prefHeight="42.0" prefWidth="197.0" />
+                 </children>
+             </Pane>
              <Pane fx:id="updateCarPane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
                  <children>
                      <Button layoutX="226.0" layoutY="579.0" mnemonicParsing="false" onAction="#onUpdateCarButtonClick" styleClass="inputButton" text="Update" />
@@ -278,15 +283,15 @@
                      <TextField fx:id="tfNewCarServicePrice" layoutX="165.0" layoutY="360.0" prefHeight="42.0" prefWidth="197.0" />
                  </children>
              </Pane>
-             <Pane fx:id="updateOwnerPane" layoutX="512.0" prefHeight="680.0" prefWidth="512.0" styleClass="centerPanes">
-                 <children>
-                     <Button layoutX="226.0" layoutY="579.0" mnemonicParsing="false" onAction="#onUpdateOwnerButtonClick" styleClass="inputButton" text="Update" />
-                     <ComboBox fx:id="cbUpdateOwner" layoutX="43.0" layoutY="249.0" prefHeight="50.0" prefWidth="441.0" styleClass="comboBox" />
-                     <Label layoutX="133.0" layoutY="110.0" styleClass="infoTitle" text="Please choose the owner you &#10; want to update:" />
-                     <Label layoutX="166.0" layoutY="340.0" styleClass="infoLabel" text="Enter new number of owned cars: " />
-                     <TextField fx:id="tfNewNumberOfOwnedCars" layoutX="165.0" layoutY="360.0" prefHeight="42.0" prefWidth="197.0" />
-                 </children>
-             </Pane>
+            <Pane fx:id="welcomePane" prefHeight="680.0" prefWidth="1024.0" styleClass="centerPanes">
+               <children>
+                  <Label layoutX="378.0" layoutY="233.0" prefHeight="214.0" prefWidth="268.0" styleClass="mainTitle" text="Welcome to VAM AutoShop" />
+                  <Label layoutX="209.0" layoutY="71.0" styleClass="mainTitle" text="Please choose one of the options &#10; from the menu" />
+                  <ImageView fitHeight="86.0" fitWidth="112.0" layoutX="135.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/arrow2.png" />
+                     </image></ImageView>
+               </children></Pane>
          </children>
         </Pane>
     </children>
