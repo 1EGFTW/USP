@@ -39,7 +39,7 @@ public class LoginController {
         UserModel userToLog = new UserModel(user_username.getText(),user_password.getText());
         if(userService.logIn(userToLog))
         {
-            infoAlert("User successfully logged in!");
+           /* infoAlert("User successfully logged in!");*/
             try {
                 s.close();
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(MAIN_VIEW));

@@ -52,7 +52,7 @@ public class CarServiceService {
         Car car= bg.tuvarna.sit.usp_cars.business.services.CarService.getInstance().findCarByVin(c.getVin());
         List<CarService> carServices=repository.getAll();
         for(CarService cs:carServices){
-            if(cs.getCar().equals(car))
+            if(cs.getCar().getVin().equals(car.getVin()))
                 return cs;
         }
         return null;
@@ -105,8 +105,6 @@ public class CarServiceService {
         }
         try{
             CarService carService=findByCar(carServiceModel.getCar());
-            carService.setService(carServiceModel.getService());
-            carService.setMechanic(carServiceModel.getMechanic());
             carService.setPrice_service(carServiceModel.getPrice_service());
             repository.update(carService);
             log.info("Car service updated!");

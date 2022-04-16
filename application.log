@@ -65,3 +65,19 @@
 [JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarService  - Car updated successfully!
 [JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - No such service!
 [JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - No such service!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarService  - Car updated successfully!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.OwnerService  - Owner Vladi added!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarService  - Car added successfully!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarService  - Car updated successfully!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarService  - Owner's cars updated successfully!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarService  - Car deleted successfully!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.OwnerService  - Successfully deleted owner Vladi!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - CarService created!
+
+[JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - No such service!
+[JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - No such service!
+[JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - Error updating carService!
+[JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - No such service!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - Car service updated!
