@@ -29,8 +29,7 @@ public class RegistrationController {
     public Button login;
     @FXML
     public Button emptyButton;
-    @FXML
-    public CheckBox is_admin;
+
     @FXML
     public TextField verification_code;
     private final UserService userService= UserService.getInstance();
@@ -50,11 +49,11 @@ public class RegistrationController {
         if(matchFound && user_username.getLength()>=6) {
             if(matchFound1 && user_password.getLength()>=6){
                 UserModel userToReg = new UserModel(user_username.getText(),user_password.getText());
-                if(is_admin.isSelected()){
+              /*  *//*if(is_admin.isSelected()){
                     if(verification_code.getText().equals(Constants.Values.MASTER_KEY)){
                         userToReg.setIs_admin(true);
-                    }
-                }
+                    }*//*
+                }*/
                 if(!userService.registerNewUser(userToReg))
                 {
                     infoAlert("User already exists!");

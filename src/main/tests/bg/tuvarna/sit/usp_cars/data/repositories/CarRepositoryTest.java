@@ -42,11 +42,7 @@ class CarRepositoryTest {
         paymentRepository.save(car.getPayment());
     }
 
-    @AfterEach
-    void tearDown() {
-        ownerRepository.delete(car.getOwner());
-        paymentRepository.delete(car.getPayment());
-    }
+
 
     @Test
     void save() {
@@ -54,6 +50,8 @@ class CarRepositoryTest {
         carRepository.save(car);
         assertNotEquals(all,carRepository.getAll());
         carRepository.delete(car);
+        ownerRepository.delete(car.getOwner());
+        paymentRepository.delete(car.getPayment());
     }
 
     @Test
@@ -64,6 +62,8 @@ class CarRepositoryTest {
         carRepository.update(car);
         assertNotEquals(all,carRepository.getAll());
         carRepository.delete(car);
+        ownerRepository.delete(car.getOwner());
+        paymentRepository.delete(car.getPayment());
     }
 
     @Test
@@ -72,6 +72,8 @@ class CarRepositoryTest {
         List<Car> all=carRepository.getAll();
         carRepository.delete(car);
         assertNotEquals(all,carRepository.getAll());
+        ownerRepository.delete(car.getOwner());
+        paymentRepository.delete(car.getPayment());
     }
 
 
@@ -84,5 +86,7 @@ class CarRepositoryTest {
         assertNotEquals(all,after);
         carRepository.delete(car);
         carRepository.delete(car1);
+        ownerRepository.delete(car.getOwner());
+        paymentRepository.delete(car.getPayment());
     }
 }
