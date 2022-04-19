@@ -235,6 +235,7 @@ public class MainController implements Initializable {
         OwnerService ownerService=OwnerService.getInstance();
         if(ownerService.addOwner(ownerModel)){
             showAlert(Alert.AlertType.CONFIRMATION,"Owner added!");
+            //da se nulirat poletata
         }else {
             showAlert(Alert.AlertType.WARNING,"Owner not added!");
         }
@@ -245,6 +246,7 @@ public class MainController implements Initializable {
         PaymentService paymentService=PaymentService.getInstance();
         if(paymentService.addPayment(paymentModel)){
             showAlert(Alert.AlertType.CONFIRMATION,"Payment added!");
+            //da se nulirat poletata
         }else {
             showAlert(Alert.AlertType.WARNING,"Payment not added!");
         }
@@ -256,6 +258,7 @@ public class MainController implements Initializable {
         if(mechanicService.addMechanic(mechanicModel))
         {
             showAlert(Alert.AlertType.CONFIRMATION,"Mechanic added!");
+            //da se nulirat poletata
         }else {
             showAlert(Alert.AlertType.WARNING,"Mechanic not added!");
         }
@@ -266,6 +269,7 @@ public class MainController implements Initializable {
         ServiceService service=ServiceService.getInstance();
         if(service.addService(serviceModel)){
             showAlert(Alert.AlertType.CONFIRMATION,"Service added!");
+            //da se nulirat poletata
         }else {
             showAlert(Alert.AlertType.WARNING,"Service not added!");
         }
@@ -288,6 +292,7 @@ public class MainController implements Initializable {
                 paymentService.findPaymentType(tfPaymentCombo.getValue()));
         if(carService.addCar(carModel)){
             showAlert(Alert.AlertType.CONFIRMATION,"Car added!");
+            //da se nulirat poletata
         }else {
             showAlert(Alert.AlertType.WARNING,"Car not added!");
         }
@@ -304,6 +309,7 @@ public class MainController implements Initializable {
         CarServiceModel carServiceModel=new CarServiceModel(car,service,mechanic,Double.parseDouble(tfPriceService.getText()));
         if(carServiceService.addCarService(carServiceModel)){
             showAlert(Alert.AlertType.CONFIRMATION,"CarService added!");
+            //da se nulirat poletata
         }else {
             showAlert(Alert.AlertType.WARNING,"CarService not added!");
         }
@@ -315,6 +321,8 @@ public class MainController implements Initializable {
         if(mechanicService.deleteMechanic(mechanic))
         {
             showAlert(Alert.AlertType.CONFIRMATION,"Successfully deleted mechanic!");
+            //da se nulirat poletata
+
         }else{
             showAlert(Alert.AlertType.ERROR,"Couldn't delete mechanic!");
         }
@@ -327,6 +335,7 @@ public class MainController implements Initializable {
         if(ownerService.deleteOwner(owners))
         {
             showAlert(Alert.AlertType.CONFIRMATION,"Successfully deleted owner!");
+            //da se nulirat poletata
         }else{
             showAlert(Alert.AlertType.ERROR,"Couldn't delete owner!");
         }
@@ -338,6 +347,7 @@ public class MainController implements Initializable {
         PaymentModel payments=cbDeletePayment.getValue();
         if(paymentService.deletePayment(payments))
         {
+            //da se nulirat poletata
             showAlert(Alert.AlertType.CONFIRMATION,"Successfully deleted payment method!");
         }else{
             showAlert(Alert.AlertType.ERROR,"Couldn't delete payment method!");
@@ -350,6 +360,7 @@ public class MainController implements Initializable {
         ServiceModel services=cbDeleteService.getValue();
         if(serviceService.deleteService(services))
         {
+            //da se nulirat poletata
             showAlert(Alert.AlertType.CONFIRMATION,"Successfully deleted service!");
         }else{
             showAlert(Alert.AlertType.ERROR,"Couldn't delete service!");
@@ -362,6 +373,7 @@ public class MainController implements Initializable {
         CarModel cars=cbDeleteCar.getValue();
         if(carService.deleteCar(cars))
         {
+            //da se nulirat poletata
             showAlert(Alert.AlertType.CONFIRMATION,"Successfully deleted car!");
         }else{
             showAlert(Alert.AlertType.ERROR,"Couldn't delete car!");
@@ -374,6 +386,7 @@ public class MainController implements Initializable {
         CarServiceModel carServices=cbDeleteCarService.getValue();
         if(carServiceService.deleteCarService(carServices))
         {
+            //da se nulirat poletata
             showAlert(Alert.AlertType.CONFIRMATION,"Successfully deleted car service!");
         }else{
             showAlert(Alert.AlertType.ERROR,"Couldn't delete car service!");
@@ -388,6 +401,7 @@ public class MainController implements Initializable {
         owner.setNumber_of_cars_bought(tempNumber);
         if(ownerService.updateOwner(owner))
         {
+            //da se nulirat poletata
             showAlert(Alert.AlertType.CONFIRMATION,"Successfully updated owner!");
         }else{
             showAlert(Alert.AlertType.ERROR,"Couldn't update owner!");
@@ -403,6 +417,7 @@ public class MainController implements Initializable {
         int tempMileage = Integer.parseInt(tfNewMileage.getText());
         if(carService.updateCar(car,tempOwnerModel,newPrice,tempMileage))
         {
+            //da se nulirat poletata
             showAlert(Alert.AlertType.CONFIRMATION,"Successfully updated car!");
         }else{
             showAlert(Alert.AlertType.ERROR,"Couldn't update car!");
@@ -417,6 +432,7 @@ public class MainController implements Initializable {
         carService.setPrice_service(tempPrice);
         if(carServiceService.updateCarService(carService))
         {
+            //da se nulirat poletata
             showAlert(Alert.AlertType.CONFIRMATION,"Successfully updated car's service!");
         }else{
             showAlert(Alert.AlertType.ERROR,"Couldn't update car's service!");

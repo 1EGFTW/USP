@@ -94,9 +94,7 @@ public class CarService {
         try{
             OwnerService ownerService=OwnerService.getInstance();
             Car car=findCarByVin(carModel.getVin());
-            if(ownerService.findOwner(ownerModel).equals(car.getOwner())){
-                car.getOwner().setNumber_of_cars_bought(car.getOwner().getNumber_of_cars_bought()+1);
-            }else{
+            if(!ownerService.findOwner(ownerModel).equals(car.getOwner())){
                 car.getOwner().setNumber_of_cars_bought(car.getOwner().getNumber_of_cars_bought()-1);
                 car.setOwner(ownerService.findOwner(ownerModel));
                 car.getOwner().setNumber_of_cars_bought(car.getOwner().getNumber_of_cars_bought()+1);

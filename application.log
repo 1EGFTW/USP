@@ -81,3 +81,34 @@
 [JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - Error updating carService!
 [JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - No such service!
 [JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - Car service updated!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.OwnerService  - Owner Vladimir added!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.MechanicService  - Mechanic Preslav added!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.PaymentService  - Payment type Leasing added!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarService  - Car added successfully!
+
+[JavaFX Application Thread] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - Cannot delete or update a parent row: a foreign key constraint fails (`cars_tsp`.`car`, CONSTRAINT `fk_owner` FOREIGN KEY (`id_owner`) REFERENCES `owners` (`id_owner`))
+[JavaFX Application Thread] ERROR bg.tuvarna.sit.usp_cars.business.services.OwnerService  - Error deleting owner!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.OwnerService  - Successfully deleted owner 1!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.OwnerService  - Successfully deleted owner 1!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.OwnerService  - Successfully deleted owner 1!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.PaymentService  - Payment deleted successfully!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.PaymentService  - Payment deleted successfully!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.PaymentService  - Payment deleted successfully!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.ServiceService  - Service Brakes added!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.ServiceService  - Service Diagnostics added!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - CarService created!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - CarService created!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - CarService created!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarService  - Car updated successfully!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarService  - Owner's cars updated successfully!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.OwnerService  - Successfully updated owner Sasho!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - Car service updated!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.UserService  - User Tuvarna1234 created!
