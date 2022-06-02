@@ -112,3 +112,7 @@
 [JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.OwnerService  - Successfully updated owner Sasho!
 [JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - Car service updated!
 [JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.UserService  - User Tuvarna1234 created!
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.ServiceService  - Service Clutch and flywheel added!
+
+[JavaFX Application Thread] INFO  bg.tuvarna.sit.usp_cars.business.services.CarServiceService  - CarService created!
+
